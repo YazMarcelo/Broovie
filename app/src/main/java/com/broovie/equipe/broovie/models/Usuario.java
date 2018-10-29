@@ -17,18 +17,18 @@ import lombok.ToString;
 
 public class Usuario extends EntidadePadrao {
     private String nome;
-    private String nomeUsuario;
     private String email;
     private Date dataNascimento;
-    /*
+    private String pais;
+    private String nomeUsuario;
+    private String senha;
+    private List<Usuario> amigos;
+    private List<Genero> generos;
+
+        /*
        @Column
         private String cidade;
         @Column
         private String estado;
     */
-
-    private String pais;
-    private String senha;
-    private List<Usuario> amigos;
-    private List<Genero> generos;
 }

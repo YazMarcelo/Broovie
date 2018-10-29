@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -39,15 +39,25 @@
                 android:hint="Senha"/>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btn_login"
                 android:layout_width="106dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="219dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="221dp"
+                android:layout_marginStart="85dp"
                 android:text="Logar" />
+
+            <Button
+                android:id="@+id/btn_cadastrar"
+                android:layout_width="106dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/btn_login"
+                android:layout_toEndOf="@+id/btn_login"
+                android:text="Cadastrar"
+                android:onClick="abrirTela"/>
         </RelativeLayout>
 
     </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

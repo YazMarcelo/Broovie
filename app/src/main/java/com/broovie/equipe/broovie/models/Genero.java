@@ -8,11 +8,13 @@ import lombok.ToString;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 
 public class Genero extends EntidadePadrao {
     private String descricao;
 
+    public Genero(String descricao) {
+        this.descricao = descricao;
+    }
 }
