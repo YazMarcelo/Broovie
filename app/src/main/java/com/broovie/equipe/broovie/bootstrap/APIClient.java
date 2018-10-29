@@ -9,7 +9,7 @@ public class APIClient {
 
     private static Retrofit retrofit = null;
 
-    public static final String ENDPOINT = "http://urbano.eti.br:4567/api/";
+    public static final String ENDPOINT = "191.191.141.56:4567/api/";
 
     public static Retrofit getClient() {
 
