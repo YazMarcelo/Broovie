@@ -6,10 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.broovie.equipe.broovie.R;
 
 public class DadosGeraisFragment extends Fragment {
+    EditText txtNome, txtEmail, txtDataNascimento, txtPais;
+
     private DadosGeraisFragment.onClickFragmentListener listener;
 
     public final DadosGeraisFragment.onClickFragmentListener getListener() {
@@ -21,19 +24,12 @@ public class DadosGeraisFragment extends Fragment {
     }
 
     public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.fragment_dados_gerais, container, false);
-//        View var10000 = view.findViewById(R.id.button);
-//        Button btnNextFragment = (Button)var10000;
-//        btnNextFragment.setOnClickListener((View.OnClickListener)(new View.OnClickListener() {
-//            public final void onClick(View it) {
-//                DadosGeraisFragment.onClickFragmentListener var10000 = DadosGeraisFragment.this.getListener();
-//                if (var10000 != null) {
-//                    var10000.clicked();
-//                }
-//
-//            }
-//        }));
-        return inflater.inflate(R.layout.fragment_dados_gerais, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_dados_gerais, container, false);
+        txtNome = rootView.findViewById(R.id.txt_nome);
+        txtEmail = rootView.findViewById(R.id.txt_email);
+        txtDataNascimento = rootView.findViewById(R.id.txt_data_nascimento);
+        txtPais = rootView.findViewById(R.id.txt_pais);
+        return rootView;
     }
 
     public interface onClickFragmentListener {

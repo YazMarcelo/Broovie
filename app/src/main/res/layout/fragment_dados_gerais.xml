@@ -46,10 +46,11 @@
             android:layout_centerHorizontal="true"
             android:ems="10"
             android:hint="Data de Nascimento"
-            android:inputType="textPersonName"
+            android:inputType="date"
             android:padding="8dp"
             android:textColor="#8bc34a"
-            android:textColorHint="#CFD8DC" />
+            android:textColorHint="#CFD8DC"
+            />
 
         <EditText
             android:id="@+id/txt_pais"
@@ -59,7 +60,7 @@
             android:layout_centerHorizontal="true"
             android:ems="10"
             android:hint="País"
-            android:inputType="textPersonName"
+            android:inputType="textAutoComplete"
             android:padding="8dp"
             android:textColor="#8bc34a"
             android:textColorHint="#CFD8DC" />
