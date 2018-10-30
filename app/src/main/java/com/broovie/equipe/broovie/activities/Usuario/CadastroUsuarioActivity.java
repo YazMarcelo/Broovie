@@ -6,15 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.broovie.equipe.broovie.R;
+import com.broovie.equipe.broovie.bootstrap.APIClient;
 import com.broovie.equipe.broovie.models.Usuario;
 import com.broovie.equipe.broovie.resources.UsuarioResource;
-
-import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,7 +20,7 @@ import retrofit2.Response;
 
 public class CadastroUsuarioActivity extends AppCompatActivity implements DadosGeraisFragment.onClickFragmentListener {
 
-    UsuarioResource apiUserResouce;
+    UsuarioResource apiUserResource;
 
     public Fragment prevFragment;
     public Fragment proxFragment;
@@ -34,7 +32,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements DadosG
     private boolean tvFirstIsCheck = true;
     private int count = 0;
 
-    EditText txtNome, txtEmail, txtDataNascimento, txtPais, txtLogin, txtSenha;
+    EditText txtNome, txtEmail, txtDataNascimento, txtPais, txtLogin, txtSenha, txtConfirmarSenha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +65,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements DadosG
                 }
             }));
         }
+        apiUserResource = APIClient.getClient().create(UsuarioResource.class);
     }
 
     private void settarBotoes(){
@@ -173,25 +172,26 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements DadosG
         super.onBackPressed();
     }
 
-    public void addUser(View view){
-        txtNome = findViewById(R.id.txt_nome);
-        txtEmail = findViewById(R.id.txt_email);
-        txtDataNascimento = findViewById(R.id.txt_data_nascimento);
-        txtPais = findViewById(R.id.txt_pais);
-        txtLogin = findViewById(R.id.txt_nome_usuario);
-        txtSenha = findViewById(R.id.txt_senha);
 
+
+    public void addUser(View view){
+        txtNome = dadosGeraisFragment.txtNome;
+        txtEmail = dadosGeraisFragment.txtEmail;
+        txtDataNascimento = dadosGeraisFragment.txtDataNascimento;
+        txtPais = dadosGeraisFragment.txtPais;
+        txtLogin = dadosLoginFragment.txtNomeUsuario;
+        txtSenha = dadosLoginFragment.txtSenha;
+        txtConfirmarSenha = dadosLoginFragment.txtConfirmarSenha;
 
         final Usuario user = Usuario.builder()
                 .nome(txtNome.getText().toString())
                 .email(txtEmail.getText().toString())
-                .dataNascimento(new Date(2018,10,29))
                 .pais(txtPais.getText().toString())
                 .nomeUsuario(txtLogin.getText().toString())
                 .senha(txtSenha.getText().toString()).build();
 
+        Call<Usuario> post = apiUserResource.post(user);
 
-        Call<Usuario> post = apiUserResouce.post(user);
         post.enqueue(new Callback<Usuario>() {
             @Override
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {

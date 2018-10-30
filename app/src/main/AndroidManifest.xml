@@ -21,6 +21,8 @@
         <!-- <activity android:name=".activities.Usuario.CadastroUsuarioActivity"></activity> -->
 
         <activity android:name=".activities.Usuario.CadastroUsuarioActivity" />
+
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
