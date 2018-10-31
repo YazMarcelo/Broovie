@@ -65,7 +65,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements DadosG
                 }
             }));
         }
-        apiUserResource = APIClient.getClient().create(UsuarioResource.class);
+
     }
 
     private void settarBotoes(){
@@ -175,6 +175,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements DadosG
 
 
     public void addUser(View view){
+        apiUserResource = APIClient.getClient().create(UsuarioResource.class);
+
         txtNome = dadosGeraisFragment.txtNome;
         txtEmail = dadosGeraisFragment.txtEmail;
         txtDataNascimento = dadosGeraisFragment.txtDataNascimento;
