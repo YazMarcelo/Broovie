@@ -1,15 +1,20 @@
 package com.broovie.equipe.broovie.activities.Usuario;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.broovie.equipe.broovie.R;
+import com.broovie.equipe.broovie.activities.LoginActivity;
+import com.broovie.equipe.broovie.activities.TelaPrincipalActivity;
 import com.broovie.equipe.broovie.bootstrap.APIClient;
 import com.broovie.equipe.broovie.models.Usuario;
 import com.broovie.equipe.broovie.resources.UsuarioResource;
@@ -30,7 +35,10 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements DadosG
     private TextView tvFirst;
     private TextView tvSecond;
     private boolean tvFirstIsCheck = true;
+    private Button btnProx;
+
     private int count = 0;
+
 
     EditText txtNome, txtEmail, txtDataNascimento, txtPais, txtLogin, txtSenha, txtConfirmarSenha;
 
@@ -39,17 +47,22 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements DadosG
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_usuario);
         this.initFragment();
-        this.showDadosGeraisFragment();
+        this.showAntFragmento();
         this.tvFirst = (TextView)this.findViewById(R.id.btn_prev);
         this.tvSecond = (TextView)this.findViewById(R.id.btn_prox);
         if (this.tvFirst != null) {
             this.tvFirst.setOnClickListener((View.OnClickListener)(new View.OnClickListener() {
                 public final void onClick(View it) {
                     count = count == 0 ? 0 : count - 1;
-                    CadastroUsuarioActivity.this.firstSelected();
-                    CadastroUsuarioActivity.this.showDadosGeraisFragment();
+                    if(!tvFirstIsCheck){
+                        if(count == 0)
+                            CadastroUsuarioActivity.this.firstSelected();
 
-                    settarBotoes();
+                        CadastroUsuarioActivity.this.showAntFragmento();
+                        settarBotoes();
+                    }else{
+                        showLoginActivity();
+                    }
                 }
             }));
         }
@@ -58,10 +71,12 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements DadosG
             this.tvSecond.setOnClickListener((View.OnClickListener)(new View.OnClickListener() {
                 public final void onClick(View it) {
                     count = count == 2 ? 2 : count + 1;
-                    CadastroUsuarioActivity.this.secondSelected();
-                    CadastroUsuarioActivity.this.showDadosLoginFragment();
-
-                    settarBotoes();
+                    if(proxFragment != null){
+                        CadastroUsuarioActivity.this.secondSelected();
+                        CadastroUsuarioActivity.this.showProxFragmento();
+                        settarBotoes();
+                    }else
+                        showConcluidoActivity();
                 }
             }));
         }
@@ -71,14 +86,20 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements DadosG
     private void settarBotoes(){
         switch(count){
             case 0:
+                tvFirst.setText("Voltar");
+                tvSecond.setText("Próximo");
                 setPrevFragment(null);
                 setProxFragment(dadosLoginFragment);
                 break;
             case 1:
+                tvFirst.setText("Anterior");
+                tvSecond.setText("Próximo");
                 setPrevFragment(dadosGeraisFragment);
                 setProxFragment(generosFragment);
                 break;
             case 2:
+                tvFirst.setText("Anterior");
+                tvSecond.setText("Concluir");
                 setPrevFragment(dadosLoginFragment);
                 setProxFragment(null);
                 break;
@@ -115,20 +136,33 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements DadosG
         this.tvFirstIsCheck = false;
     }
 
-    private final void showDadosGeraisFragment() {
+    private final void showAntFragmento() {
         FragmentTransaction var10000 = this.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.left_in,R.anim.left_out);
         var10000.replace(R.id.main_layout, prevFragment, getNameClass()).commit();
-        this.firstSelected();
     }
 
-    private final void showDadosLoginFragment() {
+    private final void showProxFragmento() {
         FragmentTransaction var10000 = this.getSupportFragmentManager().beginTransaction().addToBackStack((String)null).setCustomAnimations(R.anim.right_in,R.anim.right_out,R.anim.left_in,R.anim.left_out);
         var10000.replace(R.id.main_layout, proxFragment, getNameClass()).commit();
         this.secondSelected();
     }
 
+    private final void showLoginActivity(){
+        Intent it = new Intent(CadastroUsuarioActivity.this, LoginActivity.class);
+        Bundle params = new Bundle();
+        params.putString("nome","Tela Login");
+        startActivity(it);
+    }
+
+    private final void showConcluidoActivity(){
+        Intent it = new Intent(CadastroUsuarioActivity.this, TelaPrincipalActivity.class);
+        Bundle params = new Bundle();
+        params.putString("nome","Tela Principal");
+        startActivity(it);
+    }
+
     public void clicked() {
-        this.showDadosLoginFragment();
+        this.showProxFragmento();
     }
 
     public final void setPrevFragment(Fragment var1) {

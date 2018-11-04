@@ -38,74 +38,75 @@ public class GenerosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View var10000 = inflater.inflate(R.layout.fragment_generos, container, false);
         final View view = var10000;
-        //addCategory(view);
+        addCategory(view);
         return view;
     }
 
     public void addCategory(final View view) {
-        apiUserResouce = APIClient.getClient().create(GeneroResource.class);
-
-
-        Call<List<Genero>> get = apiUserResouce.get();
-
-        get.enqueue(new Callback<List<Genero>>() {
-
-            @Override
-            public void onResponse(Call<List<Genero>> call, Response<List<Genero>> response) {
-                listViewCategory = view.findViewById(R.id.lst_generos);
-
-                generosLst = response.body();
-
-                for (Genero g: generosLst) {
-                    //Criar dados para adapter
-                    HashMap<String,String> mapUser = new HashMap<String,String>();
-                    mapUser.put("id",String.valueOf(g.getId()));
-                    mapUser.put("descricao",g.getDescricao());
-
-                    colecao.add(mapUser);
-                }
-
-                String[] from = {"descricao"};
-                int[] to = {R.id.label_genero_descricao};
-
-                SimpleAdapter simpleAdapter =
-                        new SimpleAdapter(
-                                view.getContext(),
-                                colecao,
-                                R.layout.item_checkbox,
-                                from,
-                                to);
-
-                listViewCategory.setAdapter(simpleAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<List<Genero>> call, Throwable t) {
-                Toast.makeText(view.getContext(), t.toString(),Toast.LENGTH_LONG).show();
-            }
-        });
-
-//        String[] generosVt = new String[] { "Cupcake", "Donut", "Eclair", "Froyo", "Gingerbread",
-//                "Honeycomb", "Ice Cream Sandwich", "Jelly Bean",
-//                "KitKat", "Lollipop", "Marshmallow", "Nougat" };
+//        apiUserResouce = APIClient.getClient().create(GeneroResource.class);
 //
-//        for (String genero: generosVt) {
-//            String descricao;
-//            descricao = genero;
 //
-//            generos.add(new Genero(descricao));
+//        Call<List<Genero>> get = apiUserResouce.get();
 //
-//            HashMap<String,String> item = new HashMap<String,String>();
-//            item.put("descricao",descricao);
+//        get.enqueue(new Callback<List<Genero>>() {
 //
-//            dados.add(item);
+//            @Override
+//            public void onResponse(Call<List<Genero>> call, Response<List<Genero>> response) {
+//                listViewCategory = view.findViewById(R.id.lst_generos);
 //
-//            String[] from =  {"descricao"};
-//            int[] to = {R.id.label_genero_descricao};
+//                generosLst = response.body();
 //
-//            SimpleAdapter adapter = new SimpleAdapter(getContext(),dados,R.layout.item_checkbox,from,to);
+//                for (Genero g: generosLst) {
+//                    //Criar dados para adapter
+//                    HashMap<String,String> mapUser = new HashMap<String,String>();
+//                    mapUser.put("id",String.valueOf(g.getId()));
+//                    mapUser.put("descricao",g.getDescricao());
 //
-//            listViewCategory.setAdapter(adapter);
-//        }
+//                    colecao.add(mapUser);
+//                }
+//
+//                String[] from = {"descricao"};
+//                int[] to = {R.id.label_genero_descricao};
+//
+//                SimpleAdapter simpleAdapter =
+//                        new SimpleAdapter(
+//                                view.getContext(),
+//                                colecao,
+//                                R.layout.item_checkbox,
+//                                from,
+//                                to);
+//
+//                listViewCategory.setAdapter(simpleAdapter);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Genero>> call, Throwable t) {
+//                Toast.makeText(view.getContext(), t.toString(),Toast.LENGTH_LONG).show();
+//            }
+//        });
+        listViewCategory = view.findViewById(R.id.lst_generos);
+
+        String[] generosVt = new String[] { "Cupcake", "Donut", "Eclair", "Froyo", "Gingerbread",
+                "Honeycomb", "Ice Cream Sandwich", "Jelly Bean",
+                "KitKat", "Lollipop", "Marshmallow", "Nougat" };
+
+        for (String genero: generosVt) {
+            String descricao;
+            descricao = genero;
+
+            generos.add(new Genero(descricao));
+
+            HashMap<String,String> item = new HashMap<String,String>();
+            item.put("descricao",descricao);
+
+            colecao.add(item);
+
+            String[] from =  {"descricao"};
+            int[] to = {R.id.label_genero_descricao};
+
+            SimpleAdapter adapter = new SimpleAdapter( getContext(),colecao,R.layout.item_checkbox,from,to);
+
+            listViewCategory.setAdapter(adapter);
+        }
     }
 }
