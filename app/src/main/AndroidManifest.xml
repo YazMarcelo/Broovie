@@ -21,7 +21,10 @@
         <!-- <activity android:name=".activities.Usuario.CadastroUsuarioActivity"></activity> -->
 
         <activity android:name=".activities.Usuario.CadastroUsuarioActivity" />
-        <activity android:name=".activities.TelaPrincipalActivity"></activity>
+        <activity android:name=".activities.TelaPrincipalActivity" />
+        <activity
+            android:name=".activities.LayoutActivity"
+            android:label="@string/title_activity_layout"></activity>
     </application>
 
 </manifest>

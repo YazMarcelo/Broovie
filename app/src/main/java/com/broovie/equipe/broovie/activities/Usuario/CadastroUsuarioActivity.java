@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.broovie.equipe.broovie.R;
+import com.broovie.equipe.broovie.activities.LayoutActivity;
 import com.broovie.equipe.broovie.activities.LoginActivity;
 import com.broovie.equipe.broovie.activities.TelaPrincipalActivity;
 import com.broovie.equipe.broovie.bootstrap.APIClient;
@@ -155,7 +156,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements DadosG
     }
 
     private final void showConcluidoActivity(){
-        Intent it = new Intent(CadastroUsuarioActivity.this, TelaPrincipalActivity.class);
+        Intent it = new Intent(CadastroUsuarioActivity.this, LayoutActivity.class);
         Bundle params = new Bundle();
         params.putString("nome","Tela Principal");
         startActivity(it);
