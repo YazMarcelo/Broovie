@@ -19,6 +19,7 @@ public interface UsuarioResource {
     Call<Usuario> post(@Body Usuario usuario);
 
     @PUT("usuario")
+
     Call<Usuario> put(@Body Usuario usuario);
 
     @DELETE("usuario")
