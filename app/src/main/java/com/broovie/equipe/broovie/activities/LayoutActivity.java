@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.broovie.equipe.broovie.R;
 import com.broovie.equipe.broovie.activities.Perfil.PerfilActivity;
+import com.broovie.equipe.broovie.activities.TelaPrincipal.TelaPrincipalActivity;
 
 public class LayoutActivity extends AppCompatActivity {
 
