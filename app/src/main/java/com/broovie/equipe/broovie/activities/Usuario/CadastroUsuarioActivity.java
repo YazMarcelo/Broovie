@@ -74,9 +74,10 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements DadosG
                         CadastroUsuarioActivity.this.secondSelected();
                         CadastroUsuarioActivity.this.showProxFragmento();
                         settarBotoes();
-                    }else
+                    }else{
                         addUser(it);
                         showConcluidoActivity();
+                    }
                 }
             }));
         }
