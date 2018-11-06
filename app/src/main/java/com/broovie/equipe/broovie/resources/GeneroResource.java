@@ -12,7 +12,7 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 
 public interface GeneroResource {
-    @GET("genero")
+    @GET("generos")
     Call<List<Genero>> get();
 
     @POST("genero")
@@ -22,5 +22,5 @@ public interface GeneroResource {
     Call<Genero> put(@Body Genero genero);
 
     @DELETE("genero")
-    Call<Void> delete(@Body Genero genero);
+    Call<Genero> delete(@Body Genero genero);
 }

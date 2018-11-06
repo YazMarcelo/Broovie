@@ -12,7 +12,7 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 
 public interface UsuarioResource {
-    @GET("usuario")
+    @GET("usuarios")
     Call<List<Usuario>> get();
 
     @POST("usuario")
@@ -23,5 +23,5 @@ public interface UsuarioResource {
     Call<Usuario> put(@Body Usuario usuario);
 
     @DELETE("usuario")
-    Call<Void> delete(@Body Usuario usuario);
+    Call<Usuario> delete(@Body Usuario usuario);
 }
