@@ -31,8 +31,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @Override
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //View view = mInflater.inflate(R.layout.item_filme_por_categoria, parent, false);
-        return null;
+        View view = mInflater.inflate(R.layout.item_filme_por_categoria, parent, false);
+        return new ViewHolder(view);
     }
 
     // binds the data to the view and textview in each row
@@ -57,9 +57,9 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
         ViewHolder(View itemView) {
             super(itemView);
-//            myView = itemView.findViewById(R.id.colorView);
-//            myTextView = itemView.findViewById(R.id.tvFilme);
-//            itemView.setOnClickListener(this);
+            myView = itemView.findViewById(R.id.colorView);
+            myTextView = itemView.findViewById(R.id.tvFilme);
+            itemView.setOnClickListener(this);
         }
 
         @Override

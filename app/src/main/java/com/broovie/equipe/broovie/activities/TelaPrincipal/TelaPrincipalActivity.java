@@ -24,7 +24,7 @@ public class TelaPrincipalActivity extends Fragment implements MyRecyclerViewAda
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.activity_tela_principal, container, false);
+        view = inflater.inflate(R.layout.item_categoria, container, false);
 
 
         // data to populate the RecyclerView with
@@ -34,6 +34,12 @@ public class TelaPrincipalActivity extends Fragment implements MyRecyclerViewAda
         viewColors.add(Color.MAGENTA);
         viewColors.add(Color.RED);
         viewColors.add(Color.BLACK);
+        viewColors.add(Color.BLUE);
+        viewColors.add(Color.YELLOW);
+        viewColors.add(Color.MAGENTA);
+        viewColors.add(Color.RED);
+        viewColors.add(Color.BLACK);
+
 
         ArrayList<String> animalNames = new ArrayList<>();
         animalNames.add("Horse");
@@ -41,15 +47,22 @@ public class TelaPrincipalActivity extends Fragment implements MyRecyclerViewAda
         animalNames.add("Camel");
         animalNames.add("Sheep");
         animalNames.add("Goat");
+        animalNames.add("Horse");
+        animalNames.add("Cow");
+        animalNames.add("Camel");
+        animalNames.add("Sheep");
+        animalNames.add("gat");
+
+
 
         // set up the RecyclerView
-//        RecyclerView recyclerView = view.findViewById(R.id.rv);
-//        LinearLayoutManager horizontalLayoutManager
-//                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-//        recyclerView.setLayoutManager(horizontalLayoutManager);
-//        adapter = new MyRecyclerViewAdapter(getContext(), viewColors, animalNames);
-//        adapter.setClickListener(this);
-//        recyclerView.setAdapter(adapter);
+        RecyclerView recyclerView = view.findViewById(R.id.rvFilme);
+        LinearLayoutManager horizontalLayoutManager
+                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(horizontalLayoutManager);
+        adapter = new MyRecyclerViewAdapter(getContext(), viewColors, animalNames);
+        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
 
         return view;
     }
