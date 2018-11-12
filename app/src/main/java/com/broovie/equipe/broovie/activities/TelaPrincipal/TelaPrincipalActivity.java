@@ -24,7 +24,7 @@ public class TelaPrincipalActivity extends Fragment implements MyRecyclerViewAda
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.item_categoria, container, false);
+        view = inflater.inflate(R.layout.activity_tela_principal, container, false);
 
 
         // data to populate the RecyclerView with
@@ -43,13 +43,13 @@ public class TelaPrincipalActivity extends Fragment implements MyRecyclerViewAda
         animalNames.add("Goat");
 
         // set up the RecyclerView
-        RecyclerView recyclerView = view.findViewById(R.id.rvFilme);
-        LinearLayoutManager horizontalLayoutManager
-                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(horizontalLayoutManager);
-        adapter = new MyRecyclerViewAdapter(getContext(), viewColors, animalNames);
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
+//        RecyclerView recyclerView = view.findViewById(R.id.rv);
+//        LinearLayoutManager horizontalLayoutManager
+//                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+//        recyclerView.setLayoutManager(horizontalLayoutManager);
+//        adapter = new MyRecyclerViewAdapter(getContext(), viewColors, animalNames);
+//        adapter.setClickListener(this);
+//        recyclerView.setAdapter(adapter);
 
         return view;
     }

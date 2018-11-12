@@ -1,6 +1,8 @@
 package com.broovie.equipe.broovie.models;
 
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,8 +17,9 @@ import lombok.ToString;
 
 public class Filme extends EntidadePadrao {
     private String nome;
-    private Genero genero;
+    private List<Genero> generos;
     private String sinopse;
     private int classificacaoIndicativa;
+    private Boolean adulto;
 
 }

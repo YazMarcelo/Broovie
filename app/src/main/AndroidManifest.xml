@@ -25,7 +25,8 @@
         <activity
             android:name=".activities.LayoutActivity"
             android:label="@string/title_activity_layout" />
-        <activity android:name=".PesquisarActivity"></activity>
+        <activity android:name=".activities.PesquisarActivity" />
+        <activity android:name=".activities.FilmeActivity"></activity>
     </application>
 
 </manifest>
