@@ -25,6 +25,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         this.mInflater = LayoutInflater.from(context);
         this.mViewColors = colors;
         this.mAnimals = animals;
+
     }
 
     // inflates the row layout from xml when needed
@@ -57,7 +58,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
         ViewHolder(View itemView) {
             super(itemView);
-            myView = itemView.findViewById(R.id.colorView);
+            myView = itemView.findViewById(R.id.ImageViewFilme);
             myTextView = itemView.findViewById(R.id.tvFilme);
             itemView.setOnClickListener(this);
         }
