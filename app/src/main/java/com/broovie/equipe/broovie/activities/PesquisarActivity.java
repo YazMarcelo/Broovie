@@ -58,7 +58,7 @@ public class PesquisarActivity extends Fragment {
         String nome = txtPesquisar.getText().toString();
 
 
-        Call<List<Usuario>> get = apiUserResource.getPesquisar(nome);
+        Call<List<Usuario>> get = apiUserResource.getPesquisar(nome, nome);
 
         get.enqueue(new Callback<List<Usuario>>() {
             @Override

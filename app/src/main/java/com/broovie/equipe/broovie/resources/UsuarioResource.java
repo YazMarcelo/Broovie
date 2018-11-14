@@ -17,7 +17,7 @@ public interface UsuarioResource {
     Call<List<Usuario>> get();
 
     @GET("usuarios/pesquisar")
-    Call<List<Usuario>> getPesquisar(@Query("nome") String nome);
+    Call<List<Usuario>> getPesquisar(@Query("nome") String nome,  @Query("nomeUsuario") String nomeUsuario);
 
     @POST("usuario")
     Call<Usuario> post(@Body Usuario usuario);
