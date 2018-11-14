@@ -22,7 +22,6 @@ public class Usuario extends EntidadePadrao {
     private String pais;
     private String nomeUsuario;
     private String senha;
-    private List<Usuario> amigos;
     private List<Genero> generos;
 
         /*

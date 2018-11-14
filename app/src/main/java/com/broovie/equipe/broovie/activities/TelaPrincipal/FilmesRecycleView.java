@@ -1,11 +1,13 @@
 package com.broovie.equipe.broovie.activities.TelaPrincipal;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -13,18 +15,18 @@ import com.broovie.equipe.broovie.R;
 
 import java.util.List;
 
-public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
+public class FilmesRecycleView extends RecyclerView.Adapter<FilmesRecycleView.ViewHolder> {
 
-    private List<Integer> mViewColors;
-    private List<String> mAnimals;
+    private List<Bitmap> fotos;
+    private List<String> nomes;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public MyRecyclerViewAdapter(Context context, List<Integer> colors, List<String> animals) {
+    public FilmesRecycleView(Context context, List<Bitmap> fotos, List<String> nomes) {
         this.mInflater = LayoutInflater.from(context);
-        this.mViewColors = colors;
-        this.mAnimals = animals;
+        this.fotos = fotos;
+        this.nomes = nomes;
 
     }
 
@@ -39,27 +41,27 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // binds the data to the view and textview in each row
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        int color = mViewColors.get(position);
-        String animal = mAnimals.get(position);
-        holder.myView.setBackgroundColor(color);
-        holder.myTextView.setText(animal);
+        Bitmap foto = fotos.get(position);
+        String nome = nomes.get(position);
+        holder.imageViewFoto.setImageBitmap(foto);
+        holder.txtNome.setText(nome);
     }
 
     // total number of rows
     @Override
     public int getItemCount() {
-        return mAnimals.size();
+        return nomes.size();
     }
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        View myView;
-        TextView myTextView;
+        ImageView imageViewFoto;
+        TextView txtNome;
 
         ViewHolder(View itemView) {
             super(itemView);
-            myView = itemView.findViewById(R.id.ImageViewFilme);
-            myTextView = itemView.findViewById(R.id.tvFilme);
+            imageViewFoto = itemView.findViewById(R.id.ImageViewFilme);
+            txtNome = itemView.findViewById(R.id.tvFilme);
             itemView.setOnClickListener(this);
         }
 
@@ -71,7 +73,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     // convenience method for getting data at click position
     public String getItem(int id) {
-        return mAnimals.get(id);
+        return nomes.get(id);
     }
 
     // allows clicks events to be caught
