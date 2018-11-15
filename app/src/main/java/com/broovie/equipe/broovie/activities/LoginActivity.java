@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.broovie.equipe.broovie.R;
-import com.broovie.equipe.broovie.Util.DebugActivity;
+import com.broovie.equipe.broovie.util.DebugActivity;
 import com.broovie.equipe.broovie.activities.TelaPrincipal.TelaPrincipalActivity;
 import com.broovie.equipe.broovie.activities.Usuario.CadastroUsuarioActivity;
 

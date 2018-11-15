@@ -1,4 +1,4 @@
-package com.broovie.equipe.broovie.Util;
+package com.broovie.equipe.broovie.util;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;

@@ -1,8 +1,5 @@
 package com.broovie.equipe.broovie.activities.TelaPrincipal;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.broovie.equipe.broovie.R;
+import com.broovie.equipe.broovie.adapters.FilmeAdapter;
 import com.broovie.equipe.broovie.bootstrap.APIClient;
-import com.broovie.equipe.broovie.models.Arquivo;
 import com.broovie.equipe.broovie.models.Filme;
 import com.broovie.equipe.broovie.models.Usuario;
 import com.broovie.equipe.broovie.resources.FilmeResource;
@@ -28,45 +25,22 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TelaPrincipalActivity extends Fragment implements FilmesRecycleView.ItemClickListener{
+public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.ItemClickListener {
     View view;
-    private FilmesRecycleView adapter;
+    private FilmeAdapter adapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        Thread t = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                getRecomendados();
-//            }
-//        });
-//        t.run();
         getRecomendados();
 
         view = inflater.inflate(R.layout.item_categoria, container, false);
 
-
-
-        List<Bitmap> bmpFotos = new ArrayList<>();
-        ArrayList<String> filmesNomes = new ArrayList<>();
-
-        for (Filme filme : filmes) {
-            filmesNomes.add(filme.getNome());
-            Bitmap bmp = BitmapFactory.decodeByteArray(filme.getFotoCapa().getBytes(), 0, filme.getFotoCapa().getBytes().length);
-            bmpFotos.add(bmp);
-        }
-
-
-
-
-
         // set up the RecyclerView
-        RecyclerView recyclerView = view.findViewById(R.id.rvFilme);
-        LinearLayoutManager horizontalLayoutManager
-                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView recyclerView = view.findViewById(R.id.rvFilmes);
+        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(horizontalLayoutManager);
-        adapter = new FilmesRecycleView(getContext(), bmpFotos, filmesNomes);
+        adapter = new FilmeAdapter(getContext(), filmes);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
@@ -96,9 +70,7 @@ public class TelaPrincipalActivity extends Fragment implements FilmesRecycleView
 
             @Override
             public void onFailure(Call<List<Filme>> call, Throwable t) {
-                Toast.makeText(getContext(),
-                        t.getMessage(),
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
@@ -14,43 +13,42 @@
 
 
         <ImageView
-            android:id="@+id/ImageViewFilme"
+            android:id="@+id/imgFotoCapa"
             android:layout_width="180dp"
-            android:layout_height="220dp"
-            />
+            android:layout_height="220dp" />
 
-        <TextView
-            android:id="@+id/tvFilme"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"/>
+        <!--<TextView-->
+            <!--android:id="@+id/txtINome"-->
+            <!--android:layout_width="180dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:textSize="20sp" />-->
 
         <!--<ImageView-->
-            <!--android:id="@+id/imageView"-->
-            <!--android:layout_width="150dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--tools:srcCompat="@tools:sample/avatars" />-->
+        <!--android:id="@+id/imageView"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--tools:srcCompat="@tools:sample/avatars" />-->
 
         <!--<ImageView-->
-            <!--android:id="@+id/imageView2"-->
-            <!--android:layout_width="150dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--tools:srcCompat="@tools:sample/avatars" />-->
+        <!--android:id="@+id/imageView2"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--tools:srcCompat="@tools:sample/avatars" />-->
 
         <!---->
         <!--<ImageView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:paddingRight="10dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/imageview"/>-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:paddingRight="10dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/imageview"/>-->
 
         <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:textColor="#fff"-->
-            <!--android:id="@+id/txtview"/>-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textColor="#fff"-->
+        <!--android:id="@+id/txtview"/>-->
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

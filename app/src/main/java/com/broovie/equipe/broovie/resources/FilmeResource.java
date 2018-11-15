@@ -1,6 +1,5 @@
 package com.broovie.equipe.broovie.resources;
 
-import com.broovie.equipe.broovie.models.Arquivo;
 import com.broovie.equipe.broovie.models.Filme;
 
 import java.util.List;
@@ -32,7 +31,4 @@ public interface FilmeResource {
 
     @GET("filmes/recomendados")
     Call<List<Filme>> recomendados(@Query("codigoUsuario") Long codigoUsuario);
-
-    @GET("filme/fotocapa")
-    Call<Arquivo> fotoCapa(@Query("codigo") Long codigo);
 }

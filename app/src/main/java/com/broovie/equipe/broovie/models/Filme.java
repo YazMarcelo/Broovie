@@ -21,6 +21,6 @@ public class Filme extends EntidadePadrao {
     private String sinopse;
     private int classificacaoIndicativa;
     private Boolean adulto;
-    private Arquivo fotoCapa;
+    private String fotoCapa;
 
 }
