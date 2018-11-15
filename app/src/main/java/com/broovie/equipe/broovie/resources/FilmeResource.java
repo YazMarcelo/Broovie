@@ -28,7 +28,4 @@ public interface FilmeResource {
 
     @DELETE("filme")
     Call<Filme> delete(@Body Filme filme);
-
-    @GET("filmes/recomendados")
-    Call<List<Filme>> recomendados(@Query("codigoUsuario") Long codigoUsuario);
 }

@@ -17,6 +17,7 @@ import com.broovie.equipe.broovie.bootstrap.APIClient;
 import com.broovie.equipe.broovie.models.Filme;
 import com.broovie.equipe.broovie.models.Usuario;
 import com.broovie.equipe.broovie.resources.FilmeResource;
+import com.broovie.equipe.broovie.resources.UsuarioResource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +30,12 @@ public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.Item
     View view;
     private FilmeAdapter adapter;
 
+    private Usuario usuario = new Usuario();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getRecomendados();
+        getUsuario(1);
 
         view = inflater.inflate(R.layout.item_categoria, container, false);
 
@@ -40,7 +43,7 @@ public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.Item
         RecyclerView recyclerView = view.findViewById(R.id.rvFilmes);
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(horizontalLayoutManager);
-        adapter = new FilmeAdapter(getContext(), filmes);
+        adapter = new FilmeAdapter(getContext(), usuario.getRecomendados());
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
@@ -52,24 +55,18 @@ public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.Item
         Toast.makeText(getContext(), "You clicked " + adapter.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
     }
 
-    FilmeResource apiFilmeResource;
-    List<Filme> filmes = new ArrayList<>();
+    UsuarioResource usuarioResource;
 
-    private void getRecomendados() {
-        apiFilmeResource = APIClient.getClient().create(FilmeResource.class);
-        Usuario usuario = new Usuario();
-        usuario.setCode(1L);
-
-        Call<List<Filme>> recomendados = apiFilmeResource.recomendados(usuario.getCode());
-        recomendados.enqueue(new Callback<List<Filme>>() {
+    private void getUsuario(long code) {
+        usuarioResource = APIClient.getClient().create(UsuarioResource.class);
+        usuarioResource.get(code).enqueue(new Callback<Usuario>() {
             @Override
-            public void onResponse(Call<List<Filme>> call, Response<List<Filme>> response) {
-                filmes.clear();
-                filmes.addAll(response.body());
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                usuario = response.body();
             }
 
             @Override
-            public void onFailure(Call<List<Filme>> call, Throwable t) {
+            public void onFailure(Call<Usuario> call, Throwable t) {
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });

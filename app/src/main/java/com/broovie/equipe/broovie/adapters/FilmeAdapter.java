@@ -13,7 +13,11 @@ import com.broovie.equipe.broovie.bootstrap.APIClient;
 import com.broovie.equipe.broovie.models.Filme;
 import com.broovie.equipe.broovie.util.DownloadImageTask;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 public class FilmeAdapter extends RecyclerView.Adapter<FilmeAdapter.ViewHolder> {
 
