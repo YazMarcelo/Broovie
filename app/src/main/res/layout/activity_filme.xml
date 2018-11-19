@@ -9,5 +9,30 @@
     <WebView
         android:id="@+id/filme_player"
         android:layout_width="match_parent"
-        android:layout_height="217dp" />
+        android:layout_height="217dp">
+
+    </WebView>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vingadores - Guerra Infinita" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:numStars="5"
+            android:rating="5"
+            android:stepSize="1"
+            android:background="@color/light_gray"/>
+    </RelativeLayout>
+
 </LinearLayout>

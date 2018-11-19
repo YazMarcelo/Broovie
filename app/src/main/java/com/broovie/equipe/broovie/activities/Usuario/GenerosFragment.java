@@ -84,6 +84,8 @@ public class GenerosFragment extends Fragment {
 //                Toast.makeText(view.getContext(), t.toString(),Toast.LENGTH_LONG).show();
 //            }
 //        });
+
+
         listViewCategory = view.findViewById(R.id.lst_generos);
 
         String[] generosVt = new String[] { "Cupcake", "Donut", "Eclair", "Froyo", "Gingerbread",
