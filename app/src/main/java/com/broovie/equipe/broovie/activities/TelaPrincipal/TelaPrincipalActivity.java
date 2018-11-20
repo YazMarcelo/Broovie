@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.broovie.equipe.broovie.R;
+import com.broovie.equipe.broovie.activities.FilmeActivity;
 import com.broovie.equipe.broovie.adapters.FilmeAdapter;
 import com.broovie.equipe.broovie.bootstrap.APIClient;
 import com.broovie.equipe.broovie.models.Filme;
@@ -52,7 +53,13 @@ public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.Item
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getContext(), "You clicked " + adapter.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frag_base, new FilmeActivity(),"Filme")
+                .addToBackStack(null)
+                .commit();
+        Toast.makeText(getContext(), "You clicked " + adapter.getItem(position)
+                + " on item position " + position, Toast.LENGTH_SHORT).show();
+
     }
 
     UsuarioResource usuarioResource;
