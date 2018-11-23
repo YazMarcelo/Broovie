@@ -36,7 +36,7 @@ public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.Item
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getUsuario(1);
+        getUsuario(146);
 
         view = inflater.inflate(R.layout.item_categoria, container, false);
 
