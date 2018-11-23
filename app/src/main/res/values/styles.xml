@@ -8,5 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:actionMenuTextColor">#FFF</item>
     </style>
-
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/colorGold</item>
+        <item name="colorControlActivated">@color/colorGold</item>
+    </style>
 </resources>
