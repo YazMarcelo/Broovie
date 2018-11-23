@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/dark_black_gray">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +19,9 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Pesquisar..." />
+            android:hint="Pesquisar..."
+            android:textColor="@color/light_gray"
+            android:textColorHint="@color/light_gray"/>
 
         <Button
             android:id="@+id/btn_pesquisar"

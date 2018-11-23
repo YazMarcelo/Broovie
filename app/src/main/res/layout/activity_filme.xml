@@ -18,22 +18,18 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/light_gray"
+        android:textSize="20dp"
         android:text="Vingadores - Guerra Infinita" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <RatingBar
-            android:id="@+id/ratingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="2dp"
-            android:numStars="5"
-            android:stepSize="1"
-            android:theme="@style/RatingBar" />
-    </RelativeLayout>
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:numStars="5"
+        android:stepSize="1"
+        android:theme="@style/RatingBar" />
 
 </LinearLayout>
