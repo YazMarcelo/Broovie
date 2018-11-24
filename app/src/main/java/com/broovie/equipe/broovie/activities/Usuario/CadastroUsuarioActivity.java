@@ -47,6 +47,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements DadosG
         setContentView(R.layout.activity_cadastro_usuario);
         this.initFragment();
         this.showAntFragmento();
+//        generosFragment.addCategory(generosFragment.onCreateView());
         this.tvFirst = (TextView)this.findViewById(R.id.btn_prev);
         this.tvSecond = (TextView)this.findViewById(R.id.btn_prox);
         if (this.tvFirst != null) {

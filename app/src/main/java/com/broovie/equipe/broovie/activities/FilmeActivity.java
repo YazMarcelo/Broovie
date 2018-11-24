@@ -23,7 +23,7 @@ public class FilmeActivity extends Fragment {
         view = inflater.inflate(R.layout.activity_filme, container, false);
         mWebView = (WebView) view.findViewById(R.id.filme_player);
 
-        String frameVideo = "<html><body><iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/voYDlnfcchs\" frameborder=\"0\" allowfullscreen></iframe></body></html>";
+        String frameVideo = "<html><body><iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/voYDlnfcchs\" frameborder=\"0\" allowfullscreen=\"allowfullscreen\"></iframe></body></html>";
 
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setPluginState(WebSettings.PluginState.ON);

@@ -10,7 +10,8 @@
     <RelativeLayout
         android:id="@+id/frag_base"
         android:layout_width="match_parent"
-        android:layout_height="510dp">
+        android:layout_height="510dp"
+        android:background="@color/dark_black_gray">
 
     </RelativeLayout>
 
@@ -21,6 +22,8 @@
         android:layout_marginEnd="0dp"
         android:layout_marginStart="0dp"
         android:background="?android:attr/windowBackground"
+        android:backgroundTint="@color/light_black_gray"
+        app:itemIconTint="@color/dark_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

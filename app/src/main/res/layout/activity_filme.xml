@@ -4,10 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/dark_black_gray">
 
     <WebView
         android:id="@+id/filme_player"
         android:layout_width="match_parent"
-        android:layout_height="217dp" />
+        android:layout_height="217dp">
+
+    </WebView>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/light_gray"
+        android:textSize="20dp"
+        android:text="Vingadores - Guerra Infinita" />
+
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:numStars="5"
+        android:stepSize="1"
+        android:theme="@style/RatingBar" />
+
 </LinearLayout>
