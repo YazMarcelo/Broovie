@@ -15,6 +15,6 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface RecomendacaoResource {
-    @GET("recomendacao")
+    @GET("recomendacoes")
     Call<List<Recomendacao>> recomendacoes(@Query("codigoUsuario") long codigoUsuario, @Query("tipo") Recomendacao.TipoRecomendacao tipo);
 }

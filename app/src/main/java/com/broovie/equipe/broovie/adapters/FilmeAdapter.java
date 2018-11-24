@@ -18,13 +18,13 @@ import java.util.List;
 
 public class FilmeAdapter extends RecyclerView.Adapter<FilmeAdapter.ViewHolder> {
 
-    private List<Recomendacao> recomendacao;
+    private List<Filme> filmes;
     private LayoutInflater layoutInflater;
     private ItemClickListener itemClickListener;
 
-    public FilmeAdapter(Context context, List<Recomendacao> recomendacao) {
+    public FilmeAdapter(Context context, List<Filme> filmes) {
         this.layoutInflater = LayoutInflater.from(context);
-        this.recomendacao = recomendacao;
+        this.filmes = filmes;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -52,16 +52,17 @@ public class FilmeAdapter extends RecyclerView.Adapter<FilmeAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        new DownloadImageTask(holder.imgFotoCapa).execute(APIClient.ENDPOINT + this.recomendacao.get(position).getFilme().getFotoCapa());
+
+        new DownloadImageTask(holder.imgFotoCapa).execute(APIClient.ENDPOINT + this.filmes.get(position).getFotoCapa());
     }
 
     @Override
     public int getItemCount() {
-        return this.recomendacao.size();
+        return this.filmes.size();
     }
 
-    public Recomendacao getItem(int position) {
-        return this.recomendacao.get(position);
+    public Filme getItem(int position) {
+        return this.filmes.get(position);
     }
 
     public void setClickListener(ItemClickListener itemClickListener) {

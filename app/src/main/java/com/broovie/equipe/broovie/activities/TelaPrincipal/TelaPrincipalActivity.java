@@ -17,9 +17,7 @@ import com.broovie.equipe.broovie.bootstrap.APIClient;
 import com.broovie.equipe.broovie.models.Filme;
 import com.broovie.equipe.broovie.models.Recomendacao;
 import com.broovie.equipe.broovie.models.Usuario;
-import com.broovie.equipe.broovie.resources.FilmeResource;
 import com.broovie.equipe.broovie.resources.RecomendacaoResource;
-import com.broovie.equipe.broovie.resources.UsuarioResource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,29 +27,50 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.ItemClickListener {
-    View view;
+    private View view;
     private FilmeAdapter adapter;
-
     private Usuario usuario = new Usuario();
+    private RecomendacaoResource apiRecomendacao;
+    private final List<Filme> filmesUS = new ArrayList<>();
+    private final List<Filme> filmesMF = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        view = inflater.inflate(R.layout.item_categoria, container, false);
-
         try {
-            RecyclerView recyclerView = view.findViewById(R.id.rvFilmes);
+            this.apiRecomendacao = APIClient.getClient().create(RecomendacaoResource.class);
+            this.adapter = new FilmeAdapter(getContext(), this.filmesUS);
+            this.adapter.setClickListener(this);
+            this.view = inflater.inflate(R.layout.item_categoria, container, false);
+            buscarRecomendacoes(146, Recomendacao.TipoRecomendacao.USER_SIMILARITY);
+            RecyclerView recyclerView = this.view.findViewById(R.id.rvFilmes);
             LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
             recyclerView.setLayoutManager(horizontalLayoutManager);
-            Response<List<Recomendacao>> recomendacoes = APIClient.getClient().create(RecomendacaoResource.class).recomendacoes(146, Recomendacao.TipoRecomendacao.USER_SIMILARITY).execute();
-            adapter = new FilmeAdapter(getContext(), recomendacoes.body());
-            adapter.setClickListener(this);
-            recyclerView.setAdapter(adapter);
+            recyclerView.setAdapter(this.adapter);
         } catch (Exception e) {
-            System.out.println(e);
+            Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
         }
-        return view;
+        return this.view;
+    }
+
+    private void buscarRecomendacoes(long codigoUsuario, final Recomendacao.TipoRecomendacao tipo) {
+        apiRecomendacao.recomendacoes(codigoUsuario, tipo).enqueue(new Callback<List<Recomendacao>>() {
+            @Override
+            public void onResponse(Call<List<Recomendacao>> call, Response<List<Recomendacao>> response) {
+                for (Recomendacao r : response.body()) {
+                    if (tipo == Recomendacao.TipoRecomendacao.USER_SIMILARITY)
+                        TelaPrincipalActivity.this.filmesUS.add(r.getFilme());
+                    else if (tipo == Recomendacao.TipoRecomendacao.MATRIX_FACTORIZATION)
+                        TelaPrincipalActivity.this.filmesMF.add(r.getFilme());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Recomendacao>> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG);
+            }
+        });
+
     }
 
     @Override
