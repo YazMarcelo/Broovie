@@ -11,23 +11,20 @@ import android.widget.ImageView;
 import com.broovie.equipe.broovie.R;
 import com.broovie.equipe.broovie.bootstrap.APIClient;
 import com.broovie.equipe.broovie.models.Filme;
+import com.broovie.equipe.broovie.models.Recomendacao;
 import com.broovie.equipe.broovie.util.DownloadImageTask;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 public class FilmeAdapter extends RecyclerView.Adapter<FilmeAdapter.ViewHolder> {
 
-    private List<Filme> filmes;
+    private List<Recomendacao> recomendacao;
     private LayoutInflater layoutInflater;
     private ItemClickListener itemClickListener;
 
-    public FilmeAdapter(Context context, List<Filme> filmes) {
+    public FilmeAdapter(Context context, List<Recomendacao> recomendacao) {
         this.layoutInflater = LayoutInflater.from(context);
-        this.filmes = filmes;
+        this.recomendacao = recomendacao;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -55,16 +52,16 @@ public class FilmeAdapter extends RecyclerView.Adapter<FilmeAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        new DownloadImageTask(holder.imgFotoCapa).execute(APIClient.ENDPOINT + this.filmes.get(position).getFotoCapa());
+        new DownloadImageTask(holder.imgFotoCapa).execute(APIClient.ENDPOINT + this.recomendacao.get(position).getFilme().getFotoCapa());
     }
 
     @Override
     public int getItemCount() {
-        return this.filmes.size();
+        return this.recomendacao.size();
     }
 
-    public Filme getItem(int position) {
-        return this.filmes.get(position);
+    public Recomendacao getItem(int position) {
+        return this.recomendacao.get(position);
     }
 
     public void setClickListener(ItemClickListener itemClickListener) {

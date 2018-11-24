@@ -3,7 +3,6 @@ package com.broovie.equipe.broovie.models;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,8 +24,6 @@ public class Usuario extends EntidadePadrao {
     private String nomeUsuario;
     private String senha;
     private List<Genero> generos = new ArrayList<>();
-    private List<Filme> recomendados = new ArrayList<>();
-
         /*
        @Column
         private String cidade;

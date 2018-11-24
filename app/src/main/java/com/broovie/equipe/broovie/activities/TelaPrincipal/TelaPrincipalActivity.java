@@ -15,8 +15,10 @@ import com.broovie.equipe.broovie.R;
 import com.broovie.equipe.broovie.adapters.FilmeAdapter;
 import com.broovie.equipe.broovie.bootstrap.APIClient;
 import com.broovie.equipe.broovie.models.Filme;
+import com.broovie.equipe.broovie.models.Recomendacao;
 import com.broovie.equipe.broovie.models.Usuario;
 import com.broovie.equipe.broovie.resources.FilmeResource;
+import com.broovie.equipe.broovie.resources.RecomendacaoResource;
 import com.broovie.equipe.broovie.resources.UsuarioResource;
 
 import java.util.ArrayList;
@@ -35,18 +37,20 @@ public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.Item
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getUsuario(1);
 
         view = inflater.inflate(R.layout.item_categoria, container, false);
 
-        // set up the RecyclerView
-        RecyclerView recyclerView = view.findViewById(R.id.rvFilmes);
-        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(horizontalLayoutManager);
-        adapter = new FilmeAdapter(getContext(), usuario.getRecomendados());
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
-
+        try {
+            RecyclerView recyclerView = view.findViewById(R.id.rvFilmes);
+            LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+            recyclerView.setLayoutManager(horizontalLayoutManager);
+            Response<List<Recomendacao>> recomendacoes = APIClient.getClient().create(RecomendacaoResource.class).recomendacoes(146, Recomendacao.TipoRecomendacao.USER_SIMILARITY).execute();
+            adapter = new FilmeAdapter(getContext(), recomendacoes.body());
+            adapter.setClickListener(this);
+            recyclerView.setAdapter(adapter);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         return view;
     }
 
@@ -55,20 +59,4 @@ public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.Item
         Toast.makeText(getContext(), "You clicked " + adapter.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
     }
 
-    UsuarioResource usuarioResource;
-
-    private void getUsuario(long code) {
-        usuarioResource = APIClient.getClient().create(UsuarioResource.class);
-        usuarioResource.get(code).enqueue(new Callback<Usuario>() {
-            @Override
-            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-                usuario = response.body();
-            }
-
-            @Override
-            public void onFailure(Call<Usuario> call, Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
 }
