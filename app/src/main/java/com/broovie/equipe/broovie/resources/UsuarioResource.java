@@ -31,4 +31,7 @@ public interface UsuarioResource {
 
     @DELETE("usuario")
     Call<Usuario> delete(@Body Usuario usuario);
+
+    @POST("usuario/autenticar")
+    Call<Void> autenticar(@Body Usuario usuario);
 }
