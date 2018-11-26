@@ -1,5 +1,6 @@
 package com.broovie.equipe.broovie.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -7,11 +8,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.broovie.equipe.broovie.R;
 import com.broovie.equipe.broovie.activities.Perfil.PerfilActivity;
 import com.broovie.equipe.broovie.activities.TelaPrincipal.TelaPrincipalActivity;
+import com.broovie.equipe.broovie.activities.Usuario.CadastroUsuarioActivity;
 
 public class LayoutActivity extends AppCompatActivity {
 
@@ -63,4 +67,10 @@ public class LayoutActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frag_base, fragmento, nomePagina).commit();
     }
 
+    public void callToast(View view){
+        Intent it = new Intent(LayoutActivity.this, CompartilharActivity.class);
+        Bundle params = new Bundle();
+        params.putString("nome","Tela de Produto");
+        startActivity(it);
+    }
 }
