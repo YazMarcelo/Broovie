@@ -18,6 +18,7 @@ import com.broovie.equipe.broovie.R;
 import com.broovie.equipe.broovie.bootstrap.APIClient;
 import com.broovie.equipe.broovie.models.Usuario;
 import com.broovie.equipe.broovie.resources.UsuarioResource;
+import com.broovie.equipe.broovie.util.UtilAutenticacao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,7 +59,7 @@ public class PesquisarActivity extends Fragment {
         String nome = txtPesquisar.getText().toString();
 
 
-        Call<List<Usuario>> get = apiUserResource.getPesquisar(nome, nome);
+        Call<List<Usuario>> get = apiUserResource.getPesquisar(UtilAutenticacao.TOKEN, nome, nome);
 
         get.enqueue(new Callback<List<Usuario>>() {
             @Override

@@ -17,6 +17,7 @@ import com.broovie.equipe.broovie.activities.LoginActivity;
 import com.broovie.equipe.broovie.bootstrap.APIClient;
 import com.broovie.equipe.broovie.models.Usuario;
 import com.broovie.equipe.broovie.resources.UsuarioResource;
+import com.broovie.equipe.broovie.util.UtilAutenticacao;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -228,7 +229,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements DadosG
                 .nomeUsuario(txtLogin.getText().toString())
                 .senha(txtSenha.getText().toString()).build();
 
-        Call<Usuario> post = apiUserResource.post(user);
+        Call<Usuario> post = apiUserResource.post(UtilAutenticacao.TOKEN,user);
 
         post.enqueue(new Callback<Usuario>() {
             @Override
