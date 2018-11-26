@@ -28,25 +28,31 @@ import retrofit2.Response;
 
 public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.ItemClickListener {
     private View view;
-    private FilmeAdapter adapter;
+    private FilmeAdapter filmeAdapterUS;
+    private FilmeAdapter filmeAdapterMF;
     private Usuario usuario = new Usuario();
     private RecomendacaoResource apiRecomendacao;
     private final List<Filme> filmesUS = new ArrayList<>();
     private final List<Filme> filmesMF = new ArrayList<>();
+    private RecyclerView recyclerViewFilmesUS = null;
+    private RecyclerView recyclerViewFilmesMF = null;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         try {
             this.apiRecomendacao = APIClient.getClient().create(RecomendacaoResource.class);
-            this.adapter = new FilmeAdapter(getContext(), this.filmesUS);
-            this.adapter.setClickListener(this);
-            this.view = inflater.inflate(R.layout.item_categoria, container, false);
+            this.filmeAdapterUS = new FilmeAdapter(getContext(), this.filmesUS);
+            this.filmeAdapterUS.setClickListener(this);
+            this.view = inflater.inflate(R.layout.activity_tela_principal, container, false);
             buscarRecomendacoes(146, Recomendacao.TipoRecomendacao.USER_SIMILARITY);
-            RecyclerView recyclerView = this.view.findViewById(R.id.rvFilmes);
-            LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-            recyclerView.setLayoutManager(horizontalLayoutManager);
-            recyclerView.setAdapter(this.adapter);
+            this.recyclerViewFilmesUS = this.view.findViewById(R.id.recyclerViewFilmesUS);
+            this.recyclerViewFilmesUS.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+            this.recyclerViewFilmesUS.setAdapter(this.filmeAdapterUS);
+            buscarRecomendacoes(146, Recomendacao.TipoRecomendacao.MATRIX_FACTORIZATION);
+            this.recyclerViewFilmesMF = this.view.findViewById(R.id.recyclerViewFilmesMF);
+            this.recyclerViewFilmesMF.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+            this.recyclerViewFilmesMF.setAdapter(this.filmeAdapterMF);
         } catch (Exception e) {
             Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
         }
@@ -75,7 +81,7 @@ public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.Item
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getContext(), "You clicked " + adapter.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "You clicked " + filmeAdapterUS.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
     }
 
 }
