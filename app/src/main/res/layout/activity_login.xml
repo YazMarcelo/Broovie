@@ -17,7 +17,7 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/txt_login"
                 android:layout_width="272dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -28,7 +28,7 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/txt_login_senha"
                 android:layout_width="272dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"

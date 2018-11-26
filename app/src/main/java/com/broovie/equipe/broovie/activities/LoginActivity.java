@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.broovie.equipe.broovie.R;
@@ -21,10 +22,15 @@ import retrofit2.Response;
 
 public class LoginActivity extends DebugActivity {
 
+    EditText txtLogin;
+    EditText txtSenha;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        txtLogin = (EditText) findViewById(R.id.txt_login);
+        txtSenha = (EditText) findViewById(R.id.txt_login_senha);
     }
 
     public void abrirTela(View view) {
@@ -41,7 +47,7 @@ public class LoginActivity extends DebugActivity {
                 break;
             case R.id.btn_login:
                 UsuarioResource apiUsuario = APIClient.getClient().create(UsuarioResource.class);
-                apiUsuario.autenticar(Usuario.builder().nomeUsuario("gguuimaraes").senha("666").build()).enqueue(new Callback<Void>() {
+                apiUsuario.autenticar(Usuario.builder().nomeUsuario(txtLogin.getText().toString()).senha(txtSenha.getText().toString()).build()).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         Toast.makeText(getApplicationContext(), response.headers().get("Authorization"), Toast.LENGTH_LONG).show();
