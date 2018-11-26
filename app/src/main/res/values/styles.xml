@@ -13,6 +13,10 @@
         <item name="colorControlActivated">@color/colorGold</item>
     </style>
     <style name="ButtonStyle">
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginLeft">6dp</item>
+        <item name="android:layout_marginRight">6dp</item>
             <item name="android:background">@drawable/border_button</item>
         <item name="android:icon">@drawable/ic_share_black_24dp</item>
     </style>
