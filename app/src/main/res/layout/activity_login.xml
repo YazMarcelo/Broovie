@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.LoginActivity">
+    tools:context=".activities.LoginActivity"
+    android:background="@color/light_black_gray">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,7 +26,8 @@
                 android:layout_marginTop="151dp"
                 android:ems="10"
                 android:hint="Login"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColorHint="#fff"/>
 
             <EditText
                 android:id="@+id/txt_login_senha"
@@ -36,27 +38,34 @@
                 android:layout_marginTop="211dp"
                 android:ems="10"
                 android:inputType="textPassword"
-                android:hint="Senha"/>
+                android:hint="Senha"
+                android:textColorHint="#fff"/>
 
             <Button
                 android:id="@+id/btn_login"
+                style="@style/ButtonStyle"
                 android:layout_width="106dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="67dp"
                 android:layout_marginBottom="221dp"
-                android:layout_marginStart="85dp"
+                android:onClick="abrirTela"
                 android:text="Logar"
-                android:onClick="abrirTela"/>
+                android:textColor="#fff" />
 
             <Button
                 android:id="@+id/btn_cadastrar"
+                style="@style/ButtonStyle"
                 android:layout_width="106dp"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/btn_login"
+                android:layout_marginStart="39dp"
+                android:layout_marginTop="0dp"
                 android:layout_toEndOf="@+id/btn_login"
+                android:onClick="abrirTela"
                 android:text="Cadastrar"
-                android:onClick="abrirTela"/>
+                android:textColor="#fff" />
         </RelativeLayout>
 
     </RelativeLayout>
