@@ -70,6 +70,10 @@ public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.Item
                     else if (tipo == Recomendacao.TipoRecomendacao.MATRIX_FACTORIZATION)
                         TelaPrincipalActivity.this.filmesMF.add(r.getFilme());
                 }
+
+
+
+
             }
 
             @Override

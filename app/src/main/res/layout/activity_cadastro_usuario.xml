@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Usuario.CadastroUsuarioActivity">
+    tools:context=".activities.Usuario.CadastroUsuarioActivity"
+    android:background="@color/light_black_gray">
 
     <RelativeLayout
         android:id="@+id/main_layout"
@@ -18,23 +19,28 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:orientation="horizontal"
-        android:padding="1dp">
+        android:padding="1dp"
+        android:background="@color/dark_black_gray">
 
         <Button
             android:id="@+id/btn_prev"
+            style="@style/ButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Voltar" />
+            android:text="Voltar"
+            android:textColor="#fff"/>
 
         <Button
             android:id="@+id/btn_prox"
+            style="@style/ButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:layout_weight="1"
-            android:text="Próximo" />
+            android:text="Próximo"
+            android:textColor="#fff"/>
 
         <!--<Button-->
         <!--android:id="@+id/btn_save"-->

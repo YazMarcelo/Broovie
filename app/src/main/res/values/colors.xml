@@ -8,4 +8,5 @@
     <color name="light_black_gray">#232323</color>
     <color name="dark_black_gray">#303030</color>
     <color name="colorGold">#debc00</color>
+    <color name="list_view_color">#5e5e5e</color>
 </resources>

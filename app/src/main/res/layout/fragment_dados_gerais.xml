@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@color/light_black_gray">
 
 
     <LinearLayout
@@ -22,8 +23,8 @@
             android:hint="Nome"
             android:inputType="textPersonName"
             android:padding="8dp"
-            android:textColor="#8bc34a"
-            android:textColorHint="#CFD8DC" />
+            android:textColor="#fff"
+            android:textColorHint="#dfdfdf" />
 
         <EditText
             android:id="@+id/txt_email"
@@ -35,8 +36,8 @@
             android:hint="email"
             android:inputType="textPersonName"
             android:padding="8dp"
-            android:textColor="#8bc34a"
-            android:textColorHint="#CFD8DC" />
+            android:textColor="#fff"
+            android:textColorHint="#dfdfdf" />
 
         <EditText
             android:id="@+id/txt_data_nascimento"
@@ -48,8 +49,8 @@
             android:hint="Data de Nascimento"
             android:inputType="date"
             android:padding="8dp"
-            android:textColor="#8bc34a"
-            android:textColorHint="#CFD8DC"
+            android:textColor="#fff"
+            android:textColorHint="#dfdfdf"
             />
 
         <EditText
@@ -62,8 +63,8 @@
             android:hint="País"
             android:inputType="textAutoComplete"
             android:padding="8dp"
-            android:textColor="#8bc34a"
-            android:textColorHint="#CFD8DC" />
+            android:textColor="#fff"
+            android:textColorHint="#dfdfdf" />
 
     </LinearLayout>
 

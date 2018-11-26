@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/list_view_color">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,7 +29,8 @@
             android:layout_gravity="center"
             android:layout_marginStart="11dp"
             android:layout_toEndOf="@+id/cb_genero"
-            android:text="Text" />
+            android:text="Text"
+            android:textColor="#fff"/>
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

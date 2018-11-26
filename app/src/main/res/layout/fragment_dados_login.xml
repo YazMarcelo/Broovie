@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@color/light_black_gray">
 
 
     <LinearLayout
@@ -22,8 +23,8 @@
             android:hint="Nome de Usuário"
             android:inputType="textPersonName"
             android:padding="8dp"
-            android:textColor="#8bc34a"
-            android:textColorHint="#CFD8DC" />
+            android:textColor="#fff"
+            android:textColorHint="#dfdfdf" />
 
         <EditText
             android:id="@+id/txt_senha"
@@ -35,8 +36,8 @@
             android:hint="Senha"
             android:inputType="textPassword"
             android:padding="8dp"
-            android:textColor="#8bc34a"
-            android:textColorHint="#CFD8DC" />
+            android:textColor="#fff"
+            android:textColorHint="#dfdfdf" />
 
         <EditText
             android:id="@+id/txt_confirmar_senha"
@@ -48,8 +49,8 @@
             android:hint="Confirmar Senha"
             android:inputType="textPassword"
             android:padding="8dp"
-            android:textColor="#8bc34a"
-            android:textColorHint="#CFD8DC" />
+            android:textColor="#fff"
+            android:textColorHint="#dfdfdf" />
 
     </LinearLayout>
 
