@@ -16,23 +16,26 @@ import retrofit2.http.Query;
 
 public interface UsuarioResource {
     @GET("usuarios")
-    Call<List<Usuario>> get(@Header("Authorization") String token);
+    Call<List<Usuario>> get();
 
     @GET("usuario/{code}")
-    Call<Usuario> get(@Header("Authorization") String token, @Path("code") long code);
+    Call<Usuario> get(@Path("code") long code);
 
     @GET("usuarios/pesquisar")
-    Call<List<Usuario>> getPesquisar(@Header("Authorization") String token, @Query("nome") String nome, @Query("nomeUsuario") String nomeUsuario);
+    Call<List<Usuario>> pesquisar(@Query("nome") String nome, @Query("nomeUsuario") String nomeUsuario);
 
     @POST("usuario")
-    Call<Usuario> post(@Header("Authorization") String token, @Body Usuario usuario);
+    Call<Usuario> post(@Body Usuario usuario);
 
     @PUT("usuario")
-    Call<Usuario> put(@Header("Authorization") String token, @Body Usuario usuario);
+    Call<Usuario> put(@Body Usuario usuario);
 
     @DELETE("usuario")
-    Call<Usuario> delete(@Header("Authorization") String token, @Body Usuario usuario);
+    Call<Usuario> delete(@Body Usuario usuario);
 
     @POST("usuario/autenticar")
     Call<Void> autenticar(@Body Usuario usuario);
+
+    @GET("usuario")
+    Call<Usuario> readByNomeUsuario(@Query("nomeUsuario") String nomeUsuario);
 }

@@ -15,18 +15,18 @@ import retrofit2.http.Query;
 
 public interface FilmeResource {
     @GET("filmes")
-    Call<List<Filme>> get(@Header("Authorization") String token);
+    Call<List<Filme>> get();
 
     @GET("filmes/pesquisar")
-    Call<List<Filme>> getPesquisar(@Header("Authorization") String token, @Query("nome") String nome);
+    Call<List<Filme>> pesquisar(@Query("nome") String nome);
 
     @POST("filme")
-    Call<Filme> post(@Header("Authorization") String token, @Body Filme filme);
+    Call<Filme> post(@Body Filme filme);
 
     @PUT("filme")
 
-    Call<Filme> put(@Header("Authorization") String token, @Body Filme filme);
+    Call<Filme> put(@Body Filme filme);
 
     @DELETE("filme")
-    Call<Filme> delete(@Header("Authorization") String token, @Body Filme filme);
+    Call<Filme> delete(@Body Filme filme);
 }

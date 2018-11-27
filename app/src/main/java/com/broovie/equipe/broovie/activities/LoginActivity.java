@@ -22,36 +22,37 @@ import retrofit2.Response;
 
 public class LoginActivity extends DebugActivity {
 
-    EditText txtLogin;
-    EditText txtSenha;
+    private EditText txtLogin = null;
+    private EditText txtSenha = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        txtLogin = (EditText) findViewById(R.id.txt_login);
-        txtSenha = (EditText) findViewById(R.id.txt_login_senha);
+        txtLogin = findViewById(R.id.txt_login);
+        txtSenha = findViewById(R.id.txt_login_senha);
     }
 
     public void abrirTela(View view) {
-        Intent it = null;
-        Bundle params = null;
+        Intent it;
         switch (view.getId()) {
             case R.id.btn_cadastrar:
-                //chamar tela
-                Log.i(TAG, "\t\tCall view CadastroUsuarioActivity");
                 it = new Intent(LoginActivity.this, CadastroUsuarioActivity.class);
-                params = new Bundle();
-                params.putString("nome", "Tela de Produto");
                 startActivity(it);
                 break;
             case R.id.btn_login:
+                String nomeUsuario = txtLogin.getText().toString();
+                String senha = txtSenha.getText().toString();
                 UsuarioResource apiUsuario = APIClient.getClient().create(UsuarioResource.class);
-                apiUsuario.autenticar(Usuario.builder().nomeUsuario(txtLogin.getText().toString()).senha(txtSenha.getText().toString()).build()).enqueue(new Callback<Void>() {
+                apiUsuario.autenticar(
+                        Usuario.builder()
+                                .nomeUsuario(nomeUsuario)
+                                .senha(senha)
+                                .build()).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        Toast.makeText(getApplicationContext(), response.headers().get("Authorization"), Toast.LENGTH_LONG).show();
-                        UtilAutenticacao.TOKEN = response.headers().get("Authorization");
+                        String token = response.headers().get("Authorization");
+                        if (token != null) UtilAutenticacao.TOKEN = token;
                     }
 
                     @Override
@@ -59,6 +60,25 @@ public class LoginActivity extends DebugActivity {
                         Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
+                if (UtilAutenticacao.TOKEN.contains("Bearer")) {
+                    apiUsuario.readByNomeUsuario(nomeUsuario).enqueue(new Callback<Usuario>() {
+                        @Override
+                        public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                            if (response.body() != null && response.body().getCode() != null) {
+                                UtilAutenticacao.USUARIO = response.body();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Usuario> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    if (UtilAutenticacao.USUARIO != null) {
+                        it = new Intent(LoginActivity.this, LayoutActivity.class);
+                        startActivity(it);
+                    }
+                }
                 break;
             default:
                 Log.i(TAG, String.format("id: %s", view.getId()));

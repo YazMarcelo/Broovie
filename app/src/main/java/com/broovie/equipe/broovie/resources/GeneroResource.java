@@ -14,14 +14,14 @@ import retrofit2.http.PUT;
 
 public interface GeneroResource {
     @GET("generos")
-    Call<List<Genero>> get(@Header("Authorization") String token);
+    Call<List<Genero>> get();
 
     @POST("genero")
-    Call<Genero> post(@Header("Authorization") String token, @Body Genero genero);
+    Call<Genero> post(@Body Genero genero);
 
     @PUT("genero")
-    Call<Genero> put(@Header("Authorization") String token, @Body Genero genero);
+    Call<Genero> put(@Body Genero genero);
 
     @DELETE("genero")
-    Call<Genero> delete(@Header("Authorization") String token, @Body Genero genero);
+    Call<Genero> delete(@Body Genero genero);
 }

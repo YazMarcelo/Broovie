@@ -61,7 +61,7 @@ public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.Item
     }
 
     private void buscarRecomendacoes(long codigoUsuario, final Recomendacao.TipoRecomendacao tipo) {
-        apiRecomendacao.recomendacoes(UtilAutenticacao.TOKEN, codigoUsuario, tipo).enqueue(new Callback<List<Recomendacao>>() {
+        apiRecomendacao.recomendacoes(codigoUsuario, tipo).enqueue(new Callback<List<Recomendacao>>() {
             @Override
             public void onResponse(Call<List<Recomendacao>> call, Response<List<Recomendacao>> response) {
                 for (Recomendacao r : response.body()) {

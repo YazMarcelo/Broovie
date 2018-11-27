@@ -229,7 +229,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements DadosG
                 .nomeUsuario(txtLogin.getText().toString())
                 .senha(txtSenha.getText().toString()).build();
 
-        Call<Usuario> post = apiUserResource.post(UtilAutenticacao.TOKEN,user);
+        Call<Usuario> post = apiUserResource.post(user);
 
         post.enqueue(new Callback<Usuario>() {
             @Override

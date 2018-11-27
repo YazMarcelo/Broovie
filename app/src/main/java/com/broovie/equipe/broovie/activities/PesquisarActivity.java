@@ -3,7 +3,6 @@ package com.broovie.equipe.broovie.activities;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,7 +58,7 @@ public class PesquisarActivity extends Fragment {
         String nome = txtPesquisar.getText().toString();
 
 
-        Call<List<Usuario>> get = apiUserResource.getPesquisar(UtilAutenticacao.TOKEN, nome, nome);
+        Call<List<Usuario>> get = apiUserResource.pesquisar(nome, nome);
 
         get.enqueue(new Callback<List<Usuario>>() {
             @Override
