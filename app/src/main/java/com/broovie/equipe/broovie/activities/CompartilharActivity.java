@@ -13,6 +13,7 @@ import com.broovie.equipe.broovie.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class CompartilharActivity extends AppCompatActivity {
@@ -23,6 +24,7 @@ public class CompartilharActivity extends AppCompatActivity {
     SimpleAdapter adapter;
 
     protected List<HashMap<String,String>> colecao = new ArrayList<HashMap<String,String>>();
+    protected List<HashMap<String,String>> colecaoPesquisar = new ArrayList<HashMap<String,String>>();
     protected ListView listViewAmigos;
 
     @Override
@@ -34,6 +36,7 @@ public class CompartilharActivity extends AppCompatActivity {
         txtPesquisar = (EditText) findViewById(R.id.txt_pesquisar_compartilhar);
         addAmigos();
         lstVetorPesquisar = lstVetor;
+        colecaoPesquisar = colecao;
         txtPesquisar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -58,12 +61,13 @@ public class CompartilharActivity extends AppCompatActivity {
 
     public void searchItem(String textToSearch){
         int cont = 0;
-        for (String[] item : lstVetorPesquisar) {
-            if (!item[0].contains(textToSearch) && !item[1].contains(textToSearch) ) {
-                lstVetorPesquisar.remove(cont);
-                colecao.remove(cont);
+        colecao = colecaoPesquisar;
+        while (cont < colecao.size()) {
+          HashMap<String,String> map = colecao.get(cont);
+            if(!map.get("nome").contains(textToSearch) && !map.get("userName").contains(textToSearch)){
+                colecao.remove(map);
             }
-            cont++;
+          cont++;
         }
 
         adapter.notifyDataSetChanged();
