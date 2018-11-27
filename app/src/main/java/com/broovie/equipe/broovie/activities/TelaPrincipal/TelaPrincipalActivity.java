@@ -21,8 +21,11 @@ import com.broovie.equipe.broovie.resources.RecomendacaoResource;
 import com.broovie.equipe.broovie.util.UtilAutenticacao;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import okhttp3.internal.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,6 +36,7 @@ public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.Item
     private FilmeAdapter filmeAdapterMF;
     private Usuario usuario = new Usuario();
     private RecomendacaoResource apiRecomendacao;
+    private final Set<Recomendacao> recomendacoes = new HashSet<>();
     private final List<Filme> filmesUS = new ArrayList<>();
     private final List<Filme> filmesMF = new ArrayList<>();
     private RecyclerView recyclerViewFilmesUS = null;
@@ -45,12 +49,14 @@ public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.Item
             this.apiRecomendacao = APIClient.getClient().create(RecomendacaoResource.class);
             this.filmeAdapterUS = new FilmeAdapter(getContext(), this.filmesUS);
             this.filmeAdapterUS.setClickListener(this);
+            this.filmeAdapterMF = new FilmeAdapter(getContext(), this.filmesMF);
+            this.filmeAdapterMF.setClickListener(this);
             this.view = inflater.inflate(R.layout.activity_tela_principal, container, false);
-            buscarRecomendacoes(146, Recomendacao.TipoRecomendacao.USER_SIMILARITY);
+            this.buscarRecomendacoes(Recomendacao.TipoRecomendacao.USER_SIMILARITY);
             this.recyclerViewFilmesUS = this.view.findViewById(R.id.recyclerViewFilmesUS);
             this.recyclerViewFilmesUS.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
             this.recyclerViewFilmesUS.setAdapter(this.filmeAdapterUS);
-            buscarRecomendacoes(146, Recomendacao.TipoRecomendacao.MATRIX_FACTORIZATION);
+            this.buscarRecomendacoes(Recomendacao.TipoRecomendacao.MATRIX_FACTORIZATION);
             this.recyclerViewFilmesMF = this.view.findViewById(R.id.recyclerViewFilmesMF);
             this.recyclerViewFilmesMF.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
             this.recyclerViewFilmesMF.setAdapter(this.filmeAdapterMF);
@@ -60,20 +66,12 @@ public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.Item
         return this.view;
     }
 
-    private void buscarRecomendacoes(long codigoUsuario, final Recomendacao.TipoRecomendacao tipo) {
-        apiRecomendacao.recomendacoes(codigoUsuario, tipo).enqueue(new Callback<List<Recomendacao>>() {
+    private void buscarRecomendacoes(final Recomendacao.TipoRecomendacao tipo) {
+        apiRecomendacao.recomendacoes(UtilAutenticacao.USUARIO.getCode(), tipo).enqueue(new Callback<List<Recomendacao>>() {
             @Override
             public void onResponse(Call<List<Recomendacao>> call, Response<List<Recomendacao>> response) {
-                for (Recomendacao r : response.body()) {
-                    if (tipo == Recomendacao.TipoRecomendacao.USER_SIMILARITY)
-                        TelaPrincipalActivity.this.filmesUS.add(r.getFilme());
-                    else if (tipo == Recomendacao.TipoRecomendacao.MATRIX_FACTORIZATION)
-                        TelaPrincipalActivity.this.filmesMF.add(r.getFilme());
-                }
-
-
-
-
+                recomendacoes.addAll(response.body());
+                TelaPrincipalActivity.this.filtrarFilmes();
             }
 
             @Override
@@ -87,6 +85,17 @@ public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.Item
     @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(getContext(), "You clicked " + filmeAdapterUS.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    private void filtrarFilmes() {
+        for (Recomendacao r : recomendacoes) {
+            if (r.getTipoRecomendacao() == Recomendacao.TipoRecomendacao.USER_SIMILARITY)
+                if (!this.filmesUS.contains(r.getFilme()))
+                    this.filmesUS.add(r.getFilme());
+            if (r.getTipoRecomendacao() == Recomendacao.TipoRecomendacao.MATRIX_FACTORIZATION)
+                if (!this.filmesMF.contains(r.getFilme()))
+                    this.filmesMF.add(r.getFilme());
+        }
     }
 
 }
