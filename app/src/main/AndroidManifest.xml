@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.LoginActivity">
+        <activity android:name=".activities.LoginActivity" android:label="Broovie">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,14 +20,12 @@
         </activity>
         <!-- <activity android:name=".activities.Usuario.CadastroUsuarioActivity"></activity> -->
 
-        <activity android:name=".activities.Usuario.CadastroUsuarioActivity" />
-        <activity android:name=".activities.TelaPrincipal.TelaPrincipalActivity" />
+        <activity android:name=".activities.Usuario.CadastroUsuarioActivity" android:label="Broovie" />
         <activity
             android:name=".activities.LayoutActivity"
-            android:label="@string/title_activity_layout" />
-        <activity android:name=".activities.PesquisarActivity" />
-        <activity android:name=".activities.FilmeActivity" />
-        <activity android:name=".activities.CompartilharActivity"></activity>
+            android:label="Broovie" />
+        <activity android:name=".activities.CompartilharActivity" android:label="Broovie" />
+        <activity android:name=".activities.Usuario.AlterarUsuarioActivity" android:label="Broovie"></activity>
     </application>
 
 </manifest>

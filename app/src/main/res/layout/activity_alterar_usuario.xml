@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.Usuario.AlterarUsuarioActivity"
+    android:background="@color/light_black_gray">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="25dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Alterar"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/alt_txtNome"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Nome"
+            android:textColorHint="#fff"
+            android:textColor="#fff"
+            android:textSize="20dp"/>
+
+        <EditText
+            android:id="@+id/alt_txtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Email"
+            android:textColorHint="#fff"
+            android:textColor="#fff"
+            android:textSize="20dp"/>
+
+        <EditText
+            android:id="@+id/alt_txtDataNascimento"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Data Nascimento"
+            android:textColorHint="#fff"
+            android:textColor="#fff"
+            android:textSize="20dp"/>
+
+        <EditText
+            android:id="@+id/alt_txtPais"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="País"
+            android:textColorHint="#fff"
+            android:textColor="#fff"
+            android:textSize="20dp"/>
+
+        <EditText
+            android:id="@+id/alt_txtNomeUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Nome de Usuário"
+            android:textColorHint="#fff"
+            android:textColor="#fff"
+            android:textSize="20dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <!--<EditText-->
+            <!--android:id="@+id/alt_txtSenhaAtual"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:hint="Senha Atual"-->
+            <!--android:textColorHint="#fff"-->
+            <!--android:textColor="#fff"-->
+            <!--android:textSize="20dp"/>-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/alt_txtNovaSenha"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:hint="Nova Senha"-->
+            <!--android:textColorHint="#fff"-->
+            <!--android:textColor="#fff"-->
+            <!--android:textSize="20dp"/>-->
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -10,7 +10,7 @@
     <RelativeLayout
         android:id="@+id/frag_base"
         android:layout_width="match_parent"
-        android:layout_height="510dp"
+        android:layout_height="match_parent"
         android:background="@color/dark_black_gray">
 
     </RelativeLayout>
