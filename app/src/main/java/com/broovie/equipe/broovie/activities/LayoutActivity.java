@@ -75,13 +75,13 @@ public class LayoutActivity extends AppCompatActivity {
         startActivity(it);
     }
 
-//    public void abrirTelaAlteracao(View view) {
-//        switch (view.getId()) {
-//            case R.id.btn_alt_Usuario:
-//                Intent it = new Intent(LayoutActivity.this, AlterarUsuarioActivity.class);
-//                startActivity(it);
-//                break;
-//
-//        }
-//    }
+    public void abrirTelaAlteracao(View view) {
+        switch (view.getId()) {
+            case R.id.btn_alt_Usuario:
+                Intent it = new Intent(LayoutActivity.this, AlterarUsuarioActivity.class);
+                startActivity(it);
+                break;
+
+        }
+    }
 }

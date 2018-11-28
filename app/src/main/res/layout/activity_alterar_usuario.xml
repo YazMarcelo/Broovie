@@ -85,22 +85,26 @@
 
                 <Button
                     style="@style/ButtonStyle"
+                    android:id="@+id/btn_cancelar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="false"
                     android:layout_weight="1"
+                    android:onClick="voltarTelaPrincipal"
                     android:text="Cancelar"
                     android:textColor="#fff" />
 
 
                 <Button
                     style="@style/ButtonStyle"
+                    android:id="@+id/btn_alterar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_weight="1"
+                    android:onClick="alterarUsuario"
                     android:text="Alterar"
                     android:textColor="#fff" />
 
