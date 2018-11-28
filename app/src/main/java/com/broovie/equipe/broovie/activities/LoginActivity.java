@@ -25,12 +25,18 @@ public class LoginActivity extends DebugActivity {
     private EditText txtLogin = null;
     private EditText txtSenha = null;
 
+    private UsuarioResource apiUsuario = null;
+
+    private String nomeUsuario = null;
+    private String senha = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         txtLogin = findViewById(R.id.txt_login);
         txtSenha = findViewById(R.id.txt_login_senha);
+        apiUsuario = APIClient.getClient().create(UsuarioResource.class);
     }
 
     public void abrirTela(View view) {
@@ -41,9 +47,8 @@ public class LoginActivity extends DebugActivity {
                 startActivity(it);
                 break;
             case R.id.btn_login:
-                String nomeUsuario = txtLogin.getText().toString();
-                String senha = txtSenha.getText().toString();
-                UsuarioResource apiUsuario = APIClient.getClient().create(UsuarioResource.class);
+                nomeUsuario = txtLogin.getText().toString();
+                senha = txtSenha.getText().toString();
                 apiUsuario.autenticar(
                         Usuario.builder()
                                 .nomeUsuario(nomeUsuario)
@@ -52,7 +57,29 @@ public class LoginActivity extends DebugActivity {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         String token = response.headers().get("Authorization");
-                        if (token != null) UtilAutenticacao.TOKEN = token;
+                        if (token != null && token.contains("Bearer")) {
+                            UtilAutenticacao.TOKEN = token;
+                            apiUsuario.readByNomeUsuario(LoginActivity.this.nomeUsuario).enqueue(new Callback<Usuario>() {
+                                @Override
+                                public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                                    if (response.body() != null && response.body().getCode() != null) {
+                                        UtilAutenticacao.USUARIO = response.body();
+                                        Intent intent = new Intent(LoginActivity.this, LayoutActivity.class);
+                                        startActivity(intent);
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Usuario> call, Throwable t) {
+                                    Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Usuário ou senha não encontrados!", Toast.LENGTH_SHORT).show();
+                            txtLogin.requestFocus();
+                            txtLogin.setText("");
+                            txtSenha.setText("");
+                        }
                     }
 
                     @Override
@@ -60,25 +87,8 @@ public class LoginActivity extends DebugActivity {
                         Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
-                if (UtilAutenticacao.TOKEN.contains("Bearer")) {
-                    apiUsuario.readByNomeUsuario(nomeUsuario).enqueue(new Callback<Usuario>() {
-                        @Override
-                        public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-                            if (response.body() != null && response.body().getCode() != null) {
-                                UtilAutenticacao.USUARIO = response.body();
-                            }
-                        }
 
-                        @Override
-                        public void onFailure(Call<Usuario> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    });
-                    if (UtilAutenticacao.USUARIO != null) {
-                        it = new Intent(LoginActivity.this, LayoutActivity.class);
-                        startActivity(it);
-                    }
-                }
+
                 break;
             default:
                 Log.i(TAG, String.format("id: %s", view.getId()));
