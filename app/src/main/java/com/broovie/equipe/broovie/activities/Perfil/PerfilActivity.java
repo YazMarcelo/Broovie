@@ -1,5 +1,6 @@
 package com.broovie.equipe.broovie.activities.Perfil;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.broovie.equipe.broovie.R;
+import com.broovie.equipe.broovie.activities.LayoutActivity;
+import com.broovie.equipe.broovie.activities.LoginActivity;
+import com.broovie.equipe.broovie.activities.Usuario.AlterarUsuarioActivity;
+import com.broovie.equipe.broovie.activities.Usuario.CadastroUsuarioActivity;
 
 public class PerfilActivity extends Fragment {
 

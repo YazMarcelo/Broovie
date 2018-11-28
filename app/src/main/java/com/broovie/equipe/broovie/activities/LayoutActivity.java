@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.broovie.equipe.broovie.R;
 import com.broovie.equipe.broovie.activities.Perfil.PerfilActivity;
 import com.broovie.equipe.broovie.activities.TelaPrincipal.TelaPrincipalActivity;
+import com.broovie.equipe.broovie.activities.Usuario.AlterarUsuarioActivity;
 import com.broovie.equipe.broovie.activities.Usuario.CadastroUsuarioActivity;
 
 public class LayoutActivity extends AppCompatActivity {
@@ -73,4 +74,14 @@ public class LayoutActivity extends AppCompatActivity {
         params.putString("nome","Tela de Produto");
         startActivity(it);
     }
+
+//    public void abrirTelaAlteracao(View view) {
+//        switch (view.getId()) {
+//            case R.id.btn_alt_Usuario:
+//                Intent it = new Intent(LayoutActivity.this, AlterarUsuarioActivity.class);
+//                startActivity(it);
+//                break;
+//
+//        }
+//    }
 }

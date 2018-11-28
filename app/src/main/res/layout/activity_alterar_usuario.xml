@@ -67,30 +67,64 @@
             android:textColor="#fff"
             android:textSize="20dp"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
 
-        <!--<EditText-->
-            <!--android:id="@+id/alt_txtSenhaAtual"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:hint="Senha Atual"-->
-            <!--android:textColorHint="#fff"-->
-            <!--android:textColor="#fff"-->
-            <!--android:textSize="20dp"/>-->
+        <RelativeLayout
+            android:id="@+id/bottom_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <!--<EditText-->
-            <!--android:id="@+id/alt_txtNovaSenha"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:hint="Nova Senha"-->
-            <!--android:textColorHint="#fff"-->
-            <!--android:textColor="#fff"-->
-            <!--android:textSize="20dp"/>-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="0dp"
+                android:orientation="horizontal"
+                android:padding="1dp"
+                android:background="@color/dark_black_gray">
+
+                <Button
+                    style="@style/ButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="false"
+                    android:layout_weight="1"
+                    android:text="Cancelar"
+                    android:textColor="#fff" />
+
+
+                <Button
+                    style="@style/ButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_weight="1"
+                    android:text="Alterar"
+                    android:textColor="#fff" />
+
+            </RelativeLayout>
+        </RelativeLayout>
 
 
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
+    <!--<EditText-->
+    <!--android:id="@+id/alt_txtSenhaAtual"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:hint="Senha Atual"-->
+    <!--android:textColorHint="#fff"-->
+    <!--android:textColor="#fff"-->
+    <!--android:textSize="20dp"/>-->
+
+    <!--<EditText-->
+    <!--android:id="@+id/alt_txtNovaSenha"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:hint="Nova Senha"-->
+    <!--android:textColorHint="#fff"-->
+    <!--android:textColor="#fff"-->
+    <!--android:textSize="20dp"/>-->
