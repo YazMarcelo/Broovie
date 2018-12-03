@@ -9,15 +9,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.broovie.equipe.broovie.R;
+import com.broovie.equipe.broovie.activities.FilmeActivity;
+import com.broovie.equipe.broovie.adapters.AmigosAdapter;
+import com.broovie.equipe.broovie.models.Filme;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class AmigosFragment extends Fragment {
+public class AmigosFragment extends Fragment implements AmigosAdapter.ItemClickListener{
     View view;
+    private AmigosAdapter amigoAdapter;
 
     protected List<HashMap<String,String>> colecao = new ArrayList<HashMap<String,String>>();
     protected ListView listViewCategory;
@@ -32,6 +37,16 @@ public class AmigosFragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onItemClick(View view, int position) {
+//        FilmeActivity filmeActivity = new FilmeActivity();
+//        Filme filmeChamado = filmeAdapterUS.getItem(position);
+//        filmeActivity.setFilme(filmeChamado);
+//        showFragment(filmeActivity, filmeChamado.getNome());
+        Toast.makeText(getContext(), "You clicked " + amigoAdapter.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
+    }
+
     public void addAmigos(final View view) {
         listViewCategory = view.findViewById(R.id.lst_amigos);
 

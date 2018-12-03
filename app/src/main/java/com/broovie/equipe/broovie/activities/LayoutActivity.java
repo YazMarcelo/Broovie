@@ -26,6 +26,7 @@ public class LayoutActivity extends AppCompatActivity {
     private TelaPrincipalActivity telaPrincipalActivity;
     private FilmeActivity telaFilme;
     private PesquisarActivity pesquisarActivity;
+    private NotificacaoActivity notificacaoActivity;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -34,7 +35,7 @@ public class LayoutActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_notifications:
-                    showFragment(telaFilme, "Filme");
+                    showFragment(notificacaoActivity, "Notificações");
                     return true;
                 case R.id.navigation_home:
                     showFragment(telaPrincipalActivity, "Tela Principal");
@@ -59,6 +60,7 @@ public class LayoutActivity extends AppCompatActivity {
         telaPrincipalActivity = new TelaPrincipalActivity();
         telaFilme = new FilmeActivity();
         pesquisarActivity = new PesquisarActivity();
+        notificacaoActivity = new NotificacaoActivity();
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
