@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.broovie.equipe.broovie.R;
+import com.broovie.equipe.broovie.activities.FilmeActivity;
 import com.broovie.equipe.broovie.adapters.FilmeAdapter;
 import com.broovie.equipe.broovie.bootstrap.APIClient;
 import com.broovie.equipe.broovie.models.Filme;
@@ -84,7 +87,17 @@ public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.Item
 
     @Override
     public void onItemClick(View view, int position) {
+        FilmeActivity filmeActivity = new FilmeActivity();
+        Filme filmeChamado = filmeAdapterUS.getItem(position);
+        filmeActivity.setFilme(filmeChamado);
+        showFragment(filmeActivity, filmeChamado.getNome());
         Toast.makeText(getContext(), "You clicked " + filmeAdapterUS.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    private final void showFragment(Fragment fragmento, String nomePagina) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frag_base, fragmento, nomePagina).commit();
     }
 
     private void filtrarFilmes() {

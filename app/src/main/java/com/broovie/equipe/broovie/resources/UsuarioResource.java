@@ -1,5 +1,6 @@
 package com.broovie.equipe.broovie.resources;
 
+import com.broovie.equipe.broovie.models.Avaliacao;
 import com.broovie.equipe.broovie.models.Usuario;
 
 import java.util.List;

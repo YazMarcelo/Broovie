@@ -15,7 +15,7 @@
     </WebView>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txt_nome_filme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/light_gray"
@@ -26,14 +26,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RatingBar
+        <!--<RatingBar-->
+            <!--android:id="@+id/ratingBar"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="0dp"-->
+            <!--android:numStars="5"-->
+            <!--android:stepSize="1"-->
+            <!--android:theme="@style/RatingBar"/>-->
+
+        <!--<com.iarcuschin.simpleratingbar.SimpleRatingBar-->
+            <!--android:id="@+id/ratingBar"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:srb_starSize="40dp"-->
+            <!--app:srb_numberOfStars="5"-->
+            <!--app:srb_rating="3"-->
+            <!--app:srb_stepSize="1"-->
+            <!--app:srb_borderColor="#fff"-->
+            <!--app:srb_fillColor="#fff"-->
+            <!--/>-->
+
+        <com.iarcuschin.simpleratingbar.SimpleRatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:numStars="5"
-            android:stepSize="1"
-            android:theme="@style/RatingBar"/>
+            android:layout_margin="8dp"
+            app:srb_fillColor="#fff"
+            app:srb_borderColor="#fff"
+            app:srb_pressedFillColor="#dfdfdf"
+            app:srb_pressedBorderColor="#dfdfdf"
+            app:srb_starSize="35dp"
+            />
 
         <Button
             android:id="@+id/button"
@@ -50,11 +74,17 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/txt_sinopse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sinopse:"
         android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/txt_sinopse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@color/light_gray"/>
 
 
 </LinearLayout>

@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:text="User Similarity"
                 android:textColor="#FFFFFF"
-                android:foreground="@color/list_view_color"/>
+                android:background="@color/list_view_color"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerViewFilmesUS"
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:text="Matrix Factorization"
                 android:textColor="#FFFFFF"
-                android:foreground="@color/list_view_color"/>
+                android:background="@color/list_view_color"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerViewFilmesMF"

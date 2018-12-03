@@ -11,13 +11,19 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.broovie.equipe.broovie.R;
+import com.broovie.equipe.broovie.models.Filme;
 
 public class FilmeActivity extends Fragment {
     View view;
     WebView mWebView;
+    TextView txtNomeFilme;
+    TextView txtSinopse;
+    Filme filme;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -31,6 +37,18 @@ public class FilmeActivity extends Fragment {
         mWebView.loadData(frameVideo, "text/html", "utf-8");
         mWebView.setWebChromeClient(new WebChromeClient());
 
+        txtNomeFilme = (TextView) view.findViewById(R.id.txt_nome_filme);
+        txtSinopse = (TextView) view.findViewById(R.id.txt_sinopse);
+        setDadosFilme(filme);
         return view;
+    }
+
+    public void setDadosFilme(Filme filme){
+        txtNomeFilme.setText(filme.getNome());
+        txtSinopse.setText(filme.getSinopse());
+    }
+
+    public void setFilme(Filme filme) {
+        this.filme = filme;
     }
 }
