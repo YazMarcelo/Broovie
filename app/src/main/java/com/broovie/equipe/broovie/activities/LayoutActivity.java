@@ -17,6 +17,7 @@ import com.broovie.equipe.broovie.activities.Perfil.PerfilActivity;
 import com.broovie.equipe.broovie.activities.TelaPrincipal.TelaPrincipalActivity;
 import com.broovie.equipe.broovie.activities.Usuario.AlterarUsuarioActivity;
 import com.broovie.equipe.broovie.activities.Usuario.CadastroUsuarioActivity;
+import com.broovie.equipe.broovie.models.Recomendacao;
 
 public class LayoutActivity extends AppCompatActivity {
 
@@ -61,6 +62,7 @@ public class LayoutActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        showFragment(telaPrincipalActivity, "Tela Principal");
     }
 
     private final void showFragment(Fragment fragmento, String nomePagina) {

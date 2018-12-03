@@ -69,7 +69,7 @@ public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.Item
         return this.view;
     }
 
-    private void buscarRecomendacoes(final Recomendacao.TipoRecomendacao tipo) {
+    public void buscarRecomendacoes(final Recomendacao.TipoRecomendacao tipo) {
         apiRecomendacao.recomendacoes(UtilAutenticacao.USUARIO.getCode(), tipo).enqueue(new Callback<List<Recomendacao>>() {
             @Override
             public void onResponse(Call<List<Recomendacao>> call, Response<List<Recomendacao>> response) {
