@@ -14,11 +14,14 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.broovie.equipe.broovie.R;
+import com.broovie.equipe.broovie.adapters.AmigosAdapter;
 import com.broovie.equipe.broovie.adapters.FilmeAdapter;
 import com.broovie.equipe.broovie.bootstrap.APIClient;
 import com.broovie.equipe.broovie.models.Avaliacao;
 import com.broovie.equipe.broovie.models.Filme;
+import com.broovie.equipe.broovie.models.Usuario;
 import com.broovie.equipe.broovie.resources.AvaliacaoResource;
+import com.broovie.equipe.broovie.resources.UsuarioResource;
 import com.broovie.equipe.broovie.util.UtilAutenticacao;
 
 import java.util.ArrayList;
@@ -35,7 +38,6 @@ public class PerfilActivity extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-
     View view;
 
     @Nullable
@@ -49,7 +51,7 @@ public class PerfilActivity extends Fragment {
             viewPager = (ViewPager) view.findViewById(R.id.viewPager);
             ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
             adapter.AddFragment(new AmigosFragment(), "Amigos");
-            adapter.AddFragment(new AvaliacoesFragment(), "Avaliações");
+//            adapter.AddFragment(new AvaliacoesFragment(), "Avaliações");
             viewPager.setAdapter(adapter);
             tabLayout.setupWithViewPager(viewPager);
         } catch (Exception e) {
@@ -58,6 +60,5 @@ public class PerfilActivity extends Fragment {
 
         return view;
     }
-
 
 }

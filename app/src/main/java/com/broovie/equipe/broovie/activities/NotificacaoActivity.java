@@ -41,7 +41,11 @@ public class NotificacaoActivity extends Fragment {
         lstVetor.add("Marcelo Hugo deseja te adicionar como amigo");
         lstVetor.add("Marcelo Hugo deseja te adicionar como amigo");
         lstVetor.add("Marcelo Hugo deseja te adicionar como amigo");
-
+        lstVetor.add("Marcelo Hugo deseja te adicionar como amigo");
+        lstVetor.add("Marcelo Hugo deseja te adicionar como amigo");
+        lstVetor.add("Marcelo Hugo deseja te adicionar como amigo");
+        lstVetor.add("Marcelo Hugo deseja te adicionar como amigo");
+        lstVetor.add("Marcelo Hugo deseja te adicionar como amigo");
 
         for(String notificacao : lstVetor){
             HashMap<String,String> item = new HashMap<String,String>();
@@ -50,7 +54,7 @@ public class NotificacaoActivity extends Fragment {
             colecao.add(item);
 
             String[] from =  {"descricao"};
-            int[] to = {R.id.labelNome, R.id.labelUsuario};
+            int[] to = {R.id.txt_notificacao};
 
             SimpleAdapter adapter = new SimpleAdapter( getContext(),colecao,R.layout.item_notificacao,from,to);
 

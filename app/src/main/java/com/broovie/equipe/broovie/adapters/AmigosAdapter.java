@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.broovie.equipe.broovie.R;
 import com.broovie.equipe.broovie.bootstrap.APIClient;
@@ -29,11 +30,15 @@ public class AmigosAdapter extends RecyclerView.Adapter<AmigosAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView imgFotoCapa;
+        //ImageView imgFotoCapa;
+        TextView labelNome;
+        TextView labelUsuario;
 
         ViewHolder(View itemView) {
             super(itemView);
-            imgFotoCapa = itemView.findViewById(R.id.imgFotoCapa);
+            //imgFotoCapa = itemView.findViewById(R.id.imgFotoCapa);
+            labelNome = itemView.findViewById(R.id.labelNome);
+            labelUsuario = itemView.findViewById(R.id.labelUsuario);
             itemView.setOnClickListener(this);
         }
 
@@ -47,14 +52,15 @@ public class AmigosAdapter extends RecyclerView.Adapter<AmigosAdapter.ViewHolder
     @Override
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.item_notificacao, parent, false);
+        View view = layoutInflater.inflate(R.layout.item_amigo, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        new DownloadImageTask(holder.imgFotoCapa).execute(APIClient.ENDPOINT + this.amigos.get(position).getNome());
+        /*new DownloadImageTask(holder.imgFotoCapa).execute(APIClient.ENDPOINT + this.amigos.get(position).getNome());*/
+        holder.labelNome.setText(this.amigos.get(position).getNome());
+        holder.labelUsuario.setText(this.amigos.get(position).getNomeUsuario());
     }
 
     @Override

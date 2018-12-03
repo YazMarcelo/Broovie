@@ -21,13 +21,8 @@
                 android:id="@+id/txt_notificacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Marcelo Hugo deseja te adicionar como amigo"
+                android:textColor="#FFF"
                 android:layout_marginBottom="10dp"/>
-            <Button
-                android:id="@+id/btn_notificacao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Aceitar"/>
 
         </LinearLayout>
 
