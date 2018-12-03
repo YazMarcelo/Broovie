@@ -9,7 +9,6 @@ import lombok.*;
 @ToString
 
 public class Avaliacao extends EntidadePadrao {
-    private Long code;
     private Usuario usuario;
     private Filme filme;
     private Nota nota;
