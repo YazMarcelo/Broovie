@@ -39,4 +39,7 @@ public interface UsuarioResource {
 
     @GET("usuario")
     Call<Usuario> readByNomeUsuario(@Query("nomeUsuario") String nomeUsuario);
+
+    @GET("usuario/{code}/amigos")
+    Call<List<Usuario>> getAmigos(@Path("code") long code);
 }
