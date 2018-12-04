@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 //import com.broovie.equipe.broovie.R;
+import com.broovie.equipe.broovie.R;
 import com.broovie.equipe.broovie.activities.LayoutActivity;
 import com.broovie.equipe.broovie.activities.LoginActivity;
 import com.broovie.equipe.broovie.bootstrap.APIClient;
@@ -26,6 +27,7 @@ import retrofit2.Response;
 public class CadastroUsuarioActivity extends AppCompatActivity implements DadosGeraisFragment.onClickFragmentListener {
 
     UsuarioResource apiUserResource;
+
 
     public Fragment prevFragment;
     public Fragment proxFragment;
