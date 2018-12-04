@@ -8,12 +8,21 @@
     android:orientation="vertical"
     android:background="@color/dark_black_gray">
 
-    <ImageView
-        android:id="@+id/imageView"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="146dp"
-        app:srcCompat="@color/light_gray" />
+        android:background="@color/light_gray">
 
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/avatar5"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp" />
+
+    </RelativeLayout>
 
 
     <Button

@@ -50,6 +50,10 @@ public class AmigosBaseAdapter extends BaseAdapter {
         return i;
     }
 
+    public interface ItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 

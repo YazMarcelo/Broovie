@@ -7,24 +7,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.broovie.equipe.broovie.R;
-import com.broovie.equipe.broovie.bootstrap.APIClient;
 import com.broovie.equipe.broovie.models.Filme;
 import com.broovie.equipe.broovie.models.Genero;
-import com.broovie.equipe.broovie.util.DownloadImageTask;
 
 import java.util.List;
 
-public class GenaroAdapter extends RecyclerView.Adapter<GenaroAdapter.ViewHolder> {
+public class GeneroAdapter extends RecyclerView.Adapter<GeneroAdapter.ViewHolder> {
 
     private List<Genero> genero;
     private LayoutInflater layoutInflater;
     private ItemClickListener itemClickListener;
 
-    public GenaroAdapter(Context context, List<Filme> filmes) {
+    public GeneroAdapter(Context context, List<Filme> filmes) {
         this.layoutInflater = LayoutInflater.from(context);
         this.genero = genero;
     }
