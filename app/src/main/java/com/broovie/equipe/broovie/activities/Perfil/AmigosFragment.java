@@ -45,14 +45,16 @@ public class AmigosFragment extends Fragment implements AmigosAdapter.ItemClickL
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       view = inflater.inflate(R.layout.fragment_amigos, container, false);
-       amigoAdapter = new AmigosBaseAdapter(this.getContext(), amigos);
-       apiUserResouce = APIClient.getClient().create(UsuarioResource.class);
-        this.recyclerViewAmigos = view.findViewById(R.id.recyclerViewAmigos);
-        addAmigos(view);
-        this.recyclerViewAmigos.setAdapter(this.amigoAdapter);
-
-
+        try {
+            view = inflater.inflate(R.layout.fragment_amigos, container, false);
+            amigoAdapter = new AmigosBaseAdapter(this.getContext(), amigos);
+            apiUserResouce = APIClient.getClient().create(UsuarioResource.class);
+            this.recyclerViewAmigos = view.findViewById(R.id.recyclerViewAmigos);
+            addAmigos(view);
+            this.recyclerViewAmigos.setAdapter(this.amigoAdapter);
+        }catch (Exception e) {
+            Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
+        }
         return view;
     }
 
@@ -72,7 +74,7 @@ public class AmigosFragment extends Fragment implements AmigosAdapter.ItemClickL
 
             @Override
             public void onResponse(Call<List<Usuario>> call, Response<List<Usuario>> response) {
-                amigos = response.body();
+                amigos.addAll(response.body());
             }
 
             @Override
