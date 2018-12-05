@@ -21,9 +21,9 @@ public class GeneroAdapter extends RecyclerView.Adapter<GeneroAdapter.ViewHolder
     private LayoutInflater layoutInflater;
     private ItemClickListener itemClickListener;
 
-    public GeneroAdapter(Context context, List<Filme> filmes) {
+    public GeneroAdapter(Context context, List<Genero> generos) {
         this.layoutInflater = LayoutInflater.from(context);
-        this.genero = genero;
+        this.genero = generos;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -54,8 +54,6 @@ public class GeneroAdapter extends RecyclerView.Adapter<GeneroAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-//        holder.checkBox).execute(APIClient.ENDPOINT + this.genero.get(position).getCode());
-        holder.checkBox.setText(this.genero.get(position).getCode().toString());
         holder.txtGenero.setText(this.genero.get(position).getDescricao());
     }
 
