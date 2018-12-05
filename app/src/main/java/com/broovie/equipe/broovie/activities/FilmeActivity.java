@@ -52,21 +52,13 @@ public class FilmeActivity extends Fragment {
         txtNomeFilme = (TextView) view.findViewById(R.id.txt_nome_filme);
         txtSinopse = (TextView) view.findViewById(R.id.txt_sinopse);
         srb = view.findViewById(R.id.ratingBar);
-        setDadosFilme(filme);
-        /*this.srb.setOnTouchListener((View.OnTouchListener) (new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                avaliarFilme((int) srb.getRating());
-                srb.setRating(srb.getRating());
-                return true;
-            }
-        }));*/
         this.srb.setOnRatingBarChangeListener(new SimpleRatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(SimpleRatingBar simpleRatingBar, float rating, boolean fromUser) {
                 avaliarFilme((int) rating);
             }
         });
+        setDadosFilme(filme);
         return view;
     }
 
@@ -101,7 +93,7 @@ public class FilmeActivity extends Fragment {
             @Override
             public void onResponse(Call<Avaliacao> call, Response<Avaliacao> response) {
                 Avaliacao avaliacao = response.body();
-                if (avaliacao.getNota() != nota) {
+                if (avaliacao != null && avaliacao.getNota() != nota) {
                     avaliacao.setNota(nota);
                     alterar(avaliacao);
                 } else {
@@ -129,7 +121,7 @@ public class FilmeActivity extends Fragment {
         apiAvaliacao.put(avaliacao).enqueue(new Callback<Avaliacao>() {
             @Override
             public void onResponse(Call<Avaliacao> call, Response<Avaliacao> response) {
-//                Toast.makeText(view.getContext(), "Filme avaliado com sucesso!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), "Filme avaliado com sucesso!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
