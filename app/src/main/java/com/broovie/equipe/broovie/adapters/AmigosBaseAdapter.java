@@ -23,6 +23,8 @@ public class AmigosBaseAdapter extends BaseAdapter {
     Context context;
     List<Usuario> colecao;
     LayoutInflater inflter;
+    private AmigosAdapter.ItemClickListener itemClickListener;
+
 
     public AmigosBaseAdapter(final Context applicationContext,
                          final List<Usuario> colecao) {
@@ -37,7 +39,7 @@ public class AmigosBaseAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
+    public Usuario getItem(int i) {
         return this.colecao.get(i);
     }
 
@@ -52,6 +54,10 @@ public class AmigosBaseAdapter extends BaseAdapter {
 
     public interface ItemClickListener {
         void onItemClick(View view, int position);
+    }
+
+    public void setClickListener(AmigosAdapter.ItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
     }
 
     @Override

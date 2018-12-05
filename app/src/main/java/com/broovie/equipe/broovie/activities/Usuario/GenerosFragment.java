@@ -42,6 +42,7 @@ import retrofit2.Response;
 public class GenerosFragment extends Fragment implements GeneroAdapter.ItemClickListener  {
     GeneroAdapter generoAdapter;
     private List<Genero> lstGeneros = new ArrayList<>();
+    private List<Genero> lstGenerosChecked = new ArrayList<>();
     private GeneroResource apiGenero;
     RecyclerView recyclerViewGenero;
     View view;
@@ -65,7 +66,16 @@ public class GenerosFragment extends Fragment implements GeneroAdapter.ItemClick
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getContext(), "You clicked " + generoAdapter.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
+        CheckBox checkBox = (CheckBox) view.findViewById(R.id.cb_genero);
+        checkBox.setChecked(!checkBox.isChecked());
+        if(checkBox.isChecked()){
+            lstGenerosChecked.add(generoAdapter.getItem(position));
+        }else {
+            if(lstGenerosChecked.contains(generoAdapter.getItem(position))){
+                lstGenerosChecked.remove(generoAdapter.getItem(position));
+            }
+        }
+        Toast.makeText(getContext(), "You clicked " + generoAdapter.getItem(position).getDescricao() + " on item position " + position, Toast.LENGTH_SHORT).show();
     }
 
     public void getGeneros() {

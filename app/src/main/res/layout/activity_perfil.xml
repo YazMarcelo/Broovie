@@ -10,7 +10,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="146dp"
+        android:layout_height="184dp"
         android:background="@color/light_gray">
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -22,6 +22,24 @@
             app:civ_border_color="#FF000000"
             app:civ_border_width="2dp" />
 
+        <TextView
+            android:id="@+id/perfil_txt_nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/profile_image"
+            android:textAlignment="center"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/perfil_txt_nome_usuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:textAlignment="center"
+            android:textColor="#000" />
+
     </RelativeLayout>
 
 
@@ -31,6 +49,13 @@
         android:layout_height="31dp"
         android:background="#fff"
         android:text="Adicionar" />
+
+    <!--<Button-->
+        <!--android:id="@+id/btn_rmv_amigo"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="31dp"-->
+        <!--android:background="#fff"-->
+        <!--android:text="Remover" />-->
 
     <Button
         android:id="@+id/btn_alt_Usuario"

@@ -17,7 +17,7 @@
     <TextView
         android:id="@+id/txt_nome_filme"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:textColor="@color/light_gray"
         android:textSize="20dp"
         android:text="" />
@@ -58,6 +58,7 @@
             app:srb_pressedBorderColor="#dfdfdf"
             app:srb_stepSize="1"
             app:srb_starSize="35dp"
+            android:onClick="abrirTela"
             />
 
         <Button

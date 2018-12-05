@@ -11,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.broovie.equipe.broovie.R;
@@ -37,6 +39,11 @@ public class PerfilActivity extends Fragment {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private Usuario usuario;
+    private Button btnAdicionar;
+    private Button btnAlterar;
+    private TextView txtNome;
+    private TextView txtNomeUsuario;
 
     View view;
 
@@ -44,14 +51,23 @@ public class PerfilActivity extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         try {
-
             view = inflater.inflate(R.layout.activity_perfil, container, false);
-
+            btnAdicionar = view.findViewById(R.id.btn_add_amigo);
+            btnAlterar = view.findViewById(R.id.btn_alt_Usuario);
+            txtNome = view.findViewById(R.id.perfil_txt_nome);
+            txtNomeUsuario = view.findViewById(R.id.perfil_txt_nome_usuario);
+            txtNome.setText(usuario.getNome());
+            txtNomeUsuario.setText(usuario.getNomeUsuario());
+            if(usuario.getCode() == UtilAutenticacao.USUARIO.getCode()){
+                btnAdicionar.setVisibility(View.GONE);
+            }else {
+                btnAlterar.setVisibility(View.GONE);
+            }
             tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
             viewPager = (ViewPager) view.findViewById(R.id.viewPager);
             ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
             adapter.AddFragment(new AmigosFragment(), "Amigos");
-//            adapter.AddFragment(new AvaliacoesFragment(), "Avaliações");
+            adapter.AddFragment(new AvaliacoesFragment(), "Avaliações");
             viewPager.setAdapter(adapter);
             tabLayout.setupWithViewPager(viewPager);
         } catch (Exception e) {
@@ -61,4 +77,11 @@ public class PerfilActivity extends Fragment {
         return view;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

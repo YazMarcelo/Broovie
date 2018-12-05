@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.broovie.equipe.broovie.activities.TelaPrincipal.TelaPrincipalActivity
 import com.broovie.equipe.broovie.activities.Usuario.AlterarUsuarioActivity;
 import com.broovie.equipe.broovie.activities.Usuario.CadastroUsuarioActivity;
 import com.broovie.equipe.broovie.models.Recomendacao;
+import com.broovie.equipe.broovie.util.UtilAutenticacao;
 
 public class LayoutActivity extends AppCompatActivity {
 
@@ -41,6 +43,7 @@ public class LayoutActivity extends AppCompatActivity {
                     showFragment(telaPrincipalActivity, "Tela Principal");
                     return true;
                 case R.id.navigation_perfil:
+                    perfilActivity.setUsuario(UtilAutenticacao.USUARIO);
                     showFragment(perfilActivity, "Perfil");
                     return true;
                 case R.id.navigation_pesquisa:
@@ -72,10 +75,10 @@ public class LayoutActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frag_base, fragmento, nomePagina).commit();
     }
 
-    public void callToast(View view){
+    public void callToast(View view) {
         Intent it = new Intent(LayoutActivity.this, CompartilharActivity.class);
         Bundle params = new Bundle();
-        params.putString("nome","Tela de Produto");
+        params.putString("nome", "Tela de Produto");
         startActivity(it);
     }
 

@@ -17,7 +17,7 @@ public class APIClient {
 
     private static Retrofit retrofit = null;
 
-    public static final String ENDPOINT = "http://192.168.137.1:8080";
+    public static final String ENDPOINT = "http://192.168.25.218:8080";
 
     public static Retrofit getClient() {
 

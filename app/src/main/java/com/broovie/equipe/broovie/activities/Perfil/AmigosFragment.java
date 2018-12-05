@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -33,11 +35,11 @@ import retrofit2.Response;
 
 public class AmigosFragment extends Fragment implements AmigosAdapter.ItemClickListener{
     View view;
-    private AmigosBaseAdapter amigoAdapter;
-
+    private AmigosAdapter amigoAdapter;
     protected UsuarioResource apiUserResouce;
     protected List<Usuario> amigos = new ArrayList<>();
-    private ListView recyclerViewAmigos;
+    private RecyclerView recyclerViewAmigos;
+    Usuario usuarioChamado = null;
 
     public  AmigosFragment(){
     }
@@ -47,11 +49,12 @@ public class AmigosFragment extends Fragment implements AmigosAdapter.ItemClickL
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         try {
             view = inflater.inflate(R.layout.fragment_amigos, container, false);
-            amigoAdapter = new AmigosBaseAdapter(this.getContext(), amigos);
+            this.amigoAdapter = new AmigosAdapter(getContext(), this.amigos);
+            this.amigoAdapter.setClickListener(this);
             apiUserResouce = APIClient.getClient().create(UsuarioResource.class);
             this.recyclerViewAmigos = view.findViewById(R.id.recyclerViewAmigos);
+            this.recyclerViewAmigos.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
             addAmigos(view);
-            this.recyclerViewAmigos.setAdapter(this.amigoAdapter);
         }catch (Exception e) {
             Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
         }
@@ -60,21 +63,21 @@ public class AmigosFragment extends Fragment implements AmigosAdapter.ItemClickL
 
     @Override
     public void onItemClick(View view, int position) {
-//        FilmeActivity filmeActivity = new FilmeActivity();
-//        Filme filmeChamado = filmeAdapterUS.getItem(position);
-//        filmeActivity.setFilme(filmeChamado);
-//        showFragment(filmeActivity, filmeChamado.getNome());
-        Toast.makeText(getContext(), "You clicked " + amigoAdapter.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
+        PerfilActivity perfilActivity = new PerfilActivity();
+        usuarioChamado = amigoAdapter.getItem(position);
+        perfilActivity.setUsuario(usuarioChamado);
+        showFragment(perfilActivity, usuarioChamado.getNome());
     }
 
     public void addAmigos(final View view) {
-        Call<List<Usuario>> get = apiUserResouce.getAmigos(UtilAutenticacao.USUARIO.getCode());
-
+        PerfilActivity parentFrag = ((PerfilActivity)AmigosFragment.this.getParentFragment());
+        Call<List<Usuario>> get = apiUserResouce.getAmigos(parentFrag.getUsuario().getCode());
         get.enqueue(new Callback<List<Usuario>>() {
 
             @Override
             public void onResponse(Call<List<Usuario>> call, Response<List<Usuario>> response) {
                 amigos.addAll(response.body());
+                recyclerViewAmigos.setAdapter(amigoAdapter);
             }
 
             @Override
@@ -82,8 +85,11 @@ public class AmigosFragment extends Fragment implements AmigosAdapter.ItemClickL
                 Toast.makeText(view.getContext(), t.toString(),Toast.LENGTH_LONG).show();
             }
         });
+    }
 
-
-
+    private final void showFragment(Fragment fragmento, String nomePagina) {
+        FragmentManager fragmentManager = this.getParentFragment().getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frag_base, fragmento, nomePagina).commit();
     }
 }
