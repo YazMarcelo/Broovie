@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/dark_black_gray">
+    android:background="@color/dark_black_gray"
+    android:orientation="vertical">
 
     <WebView
         android:id="@+id/filme_player"
@@ -18,59 +18,60 @@
         android:id="@+id/txt_nome_filme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text=""
         android:textColor="@color/light_gray"
-        android:textSize="20dp"
-        android:text="" />
+        android:textSize="20dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <!--<RatingBar-->
-            <!--android:id="@+id/ratingBar"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="0dp"-->
-            <!--android:numStars="5"-->
-            <!--android:stepSize="1"-->
-            <!--android:theme="@style/RatingBar"/>-->
+        <!--android:id="@+id/ratingBar"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="0dp"-->
+        <!--android:numStars="5"-->
+        <!--android:stepSize="1"-->
+        <!--android:theme="@style/RatingBar"/>-->
 
         <!--<com.iarcuschin.simpleratingbar.SimpleRatingBar-->
-            <!--android:id="@+id/ratingBar"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--app:srb_starSize="40dp"-->
-            <!--app:srb_numberOfStars="5"-->
-            <!--app:srb_rating="3"-->
-            <!--app:srb_stepSize="1"-->
-            <!--app:srb_borderColor="#fff"-->
-            <!--app:srb_fillColor="#fff"-->
-            <!--/>-->
+        <!--android:id="@+id/ratingBar"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:srb_starSize="40dp"-->
+        <!--app:srb_numberOfStars="5"-->
+        <!--app:srb_rating="3"-->
+        <!--app:srb_stepSize="1"-->
+        <!--app:srb_borderColor="#fff"-->
+        <!--app:srb_fillColor="#fff"-->
+        <!--/>-->
 
         <com.iarcuschin.simpleratingbar.SimpleRatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            app:srb_fillColor="#fff"
             app:srb_borderColor="#fff"
-            app:srb_pressedFillColor="#dfdfdf"
+            app:srb_fillColor="#fff"
             app:srb_pressedBorderColor="#dfdfdf"
-            app:srb_stepSize="1"
+            app:srb_pressedFillColor="#dfdfdf"
             app:srb_starSize="35dp"
-            android:onClick="abrirTela"
-            />
+            app:srb_stepSize="1" />
 
         <Button
             android:id="@+id/button"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="15dp"
-            android:foreground="@drawable/ic_share_black_24dp"
             style="@style/ButtonStyle"
-            android:onClick="callToast"/>
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp"
+            android:drawableLeft="@drawable/ic_share_black_24dp"
+            android:onClick="callToast"
+            android:padding="10dp"
+            android:text="compartilhar"
+            android:textColor="#fff" />
 
 
     </RelativeLayout>
@@ -79,14 +80,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sinopse:"
-        android:textColor="#fff"/>
+        android:textColor="#fff" />
 
     <TextView
         android:id="@+id/txt_sinopse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
-        android:textColor="@color/light_gray"/>
+        android:textColor="@color/light_gray" />
 
 
 </LinearLayout>

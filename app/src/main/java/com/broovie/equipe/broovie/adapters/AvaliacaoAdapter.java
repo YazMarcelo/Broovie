@@ -57,7 +57,7 @@ public class AvaliacaoAdapter extends RecyclerView.Adapter<AvaliacaoAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         new DownloadImageTask(holder.imgFotoCapa).execute(APIClient.ENDPOINT + this.avaliacoes.get(position).getFilme().getFotoCapa());
-        holder.srb.setRating(5);
+        holder.srb.setRating(this.avaliacoes.get(position).getNota().ordinal());
     }
 
     @Override

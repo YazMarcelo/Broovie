@@ -79,7 +79,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements DadosG
                         CadastroUsuarioActivity.this.showProxFragmento();
                         settarBotoes();
                     }else{
-                        //addUser(it);
+                        addUser(it);
                         showConcluidoActivity();
                     }
                 }
@@ -237,9 +237,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements DadosG
             @Override
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 Usuario u = response.body();
-                Toast.makeText(getApplicationContext(),
-                        u.toString(),
-                        Toast.LENGTH_LONG).show();
 
             }
 

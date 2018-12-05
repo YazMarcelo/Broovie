@@ -91,7 +91,7 @@ public class TelaPrincipalActivity extends Fragment implements FilmeAdapter.Item
         Filme filmeChamado = filmeAdapterUS.getItem(position);
         filmeActivity.setFilme(filmeChamado);
         showFragment(filmeActivity, filmeChamado.getNome());
-        Toast.makeText(getContext(), "You clicked " + filmeAdapterUS.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "You clicked " + filmeAdapterUS.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
     }
 
     private final void showFragment(Fragment fragmento, String nomePagina) {

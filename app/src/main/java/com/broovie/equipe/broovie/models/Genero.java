@@ -14,6 +14,4 @@ import lombok.ToString;
 
 public class Genero extends EntidadePadrao {
     private String descricao;
-
-
 }

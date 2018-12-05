@@ -3,8 +3,6 @@ package com.broovie.equipe.broovie.activities;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -44,7 +42,7 @@ public class FilmeActivity extends Fragment {
         apiAvaliacao = APIClient.getClient().create(AvaliacaoResource.class);
         mWebView = (WebView) view.findViewById(R.id.filme_player);
 
-        String frameVideo = "<html><body><iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/voYDlnfcchs\" frameborder=\"0\" allowfullscreen=\"allowfullscreen\"></iframe></body></html>";
+        String frameVideo = "<html><body><iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/av2jODMFu6M\" frameborder=\"0\" allowfullscreen=\"allowfullscreen\"></iframe></body></html>";
 
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
@@ -55,43 +53,103 @@ public class FilmeActivity extends Fragment {
         txtSinopse = (TextView) view.findViewById(R.id.txt_sinopse);
         srb = view.findViewById(R.id.ratingBar);
         setDadosFilme(filme);
-
-        this.srb.setOnTouchListener((View.OnTouchListener)(new View.OnTouchListener() {
+        /*this.srb.setOnTouchListener((View.OnTouchListener) (new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                avaliarFilme((int)srb.getRating());
+                avaliarFilme((int) srb.getRating());
                 srb.setRating(srb.getRating());
                 return true;
             }
-        }));
+        }));*/
+        this.srb.setOnRatingBarChangeListener(new SimpleRatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(SimpleRatingBar simpleRatingBar, float rating, boolean fromUser) {
+                avaliarFilme((int) rating);
+            }
+        });
         return view;
     }
 
-    public void avaliarFilme(int rating){
-        Avaliacao avl = new Avaliacao();
-        avl.setFilme(filme);
-        avl.setUsuario(UtilAutenticacao.USUARIO);
-        avl.setNota(Avaliacao.Nota.values()[rating]);
-        Call<Avaliacao> post = apiAvaliacao.avaliar(avl);
-        post.enqueue(new Callback<Avaliacao>() {
+    public void avaliarFilme(int rating) {
+        alterarAvaliacao(this.filme, Avaliacao.Nota.values()[rating]);
+    }
+
+    public void setDadosFilme(Filme filme) {
+        apiAvaliacao.avaliacao(UtilAutenticacao.USUARIO.getCode(), filme.getCode()).enqueue(new Callback<Avaliacao>() {
             @Override
             public void onResponse(Call<Avaliacao> call, Response<Avaliacao> response) {
-                Toast.makeText(view.getContext(), "Avaliado com sucesso",Toast.LENGTH_LONG).show();
+                Avaliacao avaliacao = response.body();
+                txtNomeFilme.setText(avaliacao.getFilme().getNome());
+                txtSinopse.setText(avaliacao.getFilme().getSinopse());
+                srb.setRating(avaliacao.getNota().ordinal());
             }
 
             @Override
             public void onFailure(Call<Avaliacao> call, Throwable t) {
-                Toast.makeText(view.getContext(), t.toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(view.getContext(), t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
 
-    public void setDadosFilme(Filme filme){
-        txtNomeFilme.setText(filme.getNome());
-        txtSinopse.setText(filme.getSinopse());
     }
 
     public void setFilme(Filme filme) {
         this.filme = filme;
+    }
+
+    private void alterarAvaliacao(final Filme filme, final Avaliacao.Nota nota) {
+        apiAvaliacao.avaliacao(UtilAutenticacao.USUARIO.getCode(), filme.getCode()).enqueue(new Callback<Avaliacao>() {
+            @Override
+            public void onResponse(Call<Avaliacao> call, Response<Avaliacao> response) {
+                Avaliacao avaliacao = response.body();
+                if (avaliacao.getNota() != nota) {
+                    avaliacao.setNota(nota);
+                    alterar(avaliacao);
+                } else {
+                    avaliacao = new Avaliacao();
+                    avaliacao.setFilme(filme);
+                    avaliacao.setUsuario(UtilAutenticacao.USUARIO);
+                    avaliacao.setNota(Avaliacao.Nota.values()[nota.ordinal()]);
+                    avaliar(avaliacao);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Avaliacao> call, Throwable t) {
+                Avaliacao avaliacao = new Avaliacao();
+                avaliacao.setFilme(filme);
+                avaliacao.setUsuario(UtilAutenticacao.USUARIO);
+                avaliacao.setNota(Avaliacao.Nota.values()[nota.ordinal()]);
+                avaliar(avaliacao);
+            }
+        });
+    }
+
+
+    private void alterar(Avaliacao avaliacao) {
+        apiAvaliacao.put(avaliacao).enqueue(new Callback<Avaliacao>() {
+            @Override
+            public void onResponse(Call<Avaliacao> call, Response<Avaliacao> response) {
+//                Toast.makeText(view.getContext(), "Filme avaliado com sucesso!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Avaliacao> call, Throwable t) {
+                Toast.makeText(view.getContext(), t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void avaliar(Avaliacao avaliacao) {
+        apiAvaliacao.post(avaliacao).enqueue(new Callback<Avaliacao>() {
+            @Override
+            public void onResponse(Call<Avaliacao> call, Response<Avaliacao> response) {
+                Toast.makeText(view.getContext(), "Filme avaliado com sucesso!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Avaliacao> call, Throwable t) {
+                Toast.makeText(view.getContext(), t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

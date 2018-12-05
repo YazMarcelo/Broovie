@@ -66,11 +66,6 @@ public class AvaliacoesFragment extends Fragment implements AvaliacaoAdapter.Ite
                 for (Avaliacao avaliacao : response.body()) {
                     if (!avaliacoes.contains(avaliacao.getFilme()))
                         avaliacoes.add(avaliacao);
-                    avaliacoes.add(avaliacao);
-                    avaliacoes.add(avaliacao);
-                    avaliacoes.add(avaliacao);
-                    avaliacoes.add(avaliacao);
-                    avaliacoes.add(avaliacao);
                 }
                 recyclerViewFilmesAvaliados.setAdapter(avaliacaoAdapter);
             }
@@ -89,7 +84,6 @@ public class AvaliacoesFragment extends Fragment implements AvaliacaoAdapter.Ite
         Filme filmeChamado = avaliacaoAdapter.getItem(position).getFilme();
         filmeActivity.setFilme(filmeChamado);
         showFragment(filmeActivity, filmeChamado.getNome());
-        Toast.makeText(getContext(), "You clicked " + avaliacaoAdapter.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
     }
 
     private final void showFragment(Fragment fragmento, String nomePagina) {

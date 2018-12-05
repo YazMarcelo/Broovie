@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Usuario.AlterarUsuarioActivity"
-    android:background="@color/light_black_gray">
+    android:background="@color/light_black_gray"
+    tools:context=".activities.Usuario.AlterarUsuarioActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,45 +27,50 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:hint="Nome"
-            android:textColorHint="#fff"
             android:textColor="#fff"
-            android:textSize="20dp"/>
+            android:textColorHint="#fff"
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/alt_txtEmail"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:hint="Email"
-            android:textColorHint="#fff"
             android:textColor="#fff"
-            android:textSize="20dp"/>
+            android:textColorHint="#fff"
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/alt_txtDataNascimento"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:hint="Data Nascimento"
-            android:textColorHint="#fff"
             android:textColor="#fff"
-            android:textSize="20dp"/>
+            android:textColorHint="#fff"
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/alt_txtPais"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:hint="País"
-            android:textColorHint="#fff"
             android:textColor="#fff"
-            android:textSize="20dp"/>
+            android:textColorHint="#fff"
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/alt_txtNomeUsuario"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:hint="Nome de Usuário"
-            android:textColorHint="#fff"
+            android:inputType="none"
             android:textColor="#fff"
-            android:textSize="20dp"/>
+            android:textColorHint="#fff"
+            android:textSize="20dp"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
 
 
         <RelativeLayout
@@ -79,13 +84,13 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="0dp"
+                android:background="@color/dark_black_gray"
                 android:orientation="horizontal"
-                android:padding="1dp"
-                android:background="@color/dark_black_gray">
+                android:padding="1dp">
 
                 <Button
-                    style="@style/ButtonStyle"
                     android:id="@+id/btn_cancelar"
+                    style="@style/ButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -97,8 +102,8 @@
 
 
                 <Button
-                    style="@style/ButtonStyle"
                     android:id="@+id/btn_alterar"
+                    style="@style/ButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -114,21 +119,6 @@
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
-    <!--<EditText-->
-    <!--android:id="@+id/alt_txtSenhaAtual"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="40dp"-->
-    <!--android:hint="Senha Atual"-->
-    <!--android:textColorHint="#fff"-->
-    <!--android:textColor="#fff"-->
-    <!--android:textSize="20dp"/>-->
+</android.support.constraint.ConstraintLayout><!--<EditText--><!--android:id="@+id/alt_txtSenhaAtual"--><!--android:layout_width="match_parent"--><!--android:layout_height="40dp"--><!--android:hint="Senha Atual"--><!--android:textColorHint="#fff"--><!--android:textColor="#fff"--><!--android:textSize="20dp"/>-->
 
-    <!--<EditText-->
-    <!--android:id="@+id/alt_txtNovaSenha"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="40dp"-->
-    <!--android:hint="Nova Senha"-->
-    <!--android:textColorHint="#fff"-->
-    <!--android:textColor="#fff"-->
-    <!--android:textSize="20dp"/>-->
+    <!--<EditText--><!--android:id="@+id/alt_txtNovaSenha"--><!--android:layout_width="match_parent"--><!--android:layout_height="40dp"--><!--android:hint="Nova Senha"--><!--android:textColorHint="#fff"--><!--android:textColor="#fff"--><!--android:textSize="20dp"/>-->

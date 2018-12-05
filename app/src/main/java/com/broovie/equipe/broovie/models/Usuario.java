@@ -19,6 +19,7 @@ import lombok.ToString;
 public class Usuario extends EntidadePadrao {
     private String nome;
     private String email;
+
     private Date dataNascimento;
     private String pais;
     private String nomeUsuario;

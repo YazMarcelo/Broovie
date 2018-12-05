@@ -60,8 +60,11 @@ public class PerfilActivity extends Fragment {
             txtNomeUsuario.setText(usuario.getNomeUsuario());
             if(usuario.getCode() == UtilAutenticacao.USUARIO.getCode()){
                 btnAdicionar.setVisibility(View.GONE);
+                btnAlterar.setVisibility(View.VISIBLE);
             }else {
                 btnAlterar.setVisibility(View.GONE);
+                btnAdicionar.setVisibility(View.VISIBLE);
+
             }
             tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
             viewPager = (ViewPager) view.findViewById(R.id.viewPager);

@@ -75,7 +75,6 @@ public class GenerosFragment extends Fragment implements GeneroAdapter.ItemClick
                 lstGenerosChecked.remove(generoAdapter.getItem(position));
             }
         }
-        Toast.makeText(getContext(), "You clicked " + generoAdapter.getItem(position).getDescricao() + " on item position " + position, Toast.LENGTH_SHORT).show();
     }
 
     public void getGeneros() {

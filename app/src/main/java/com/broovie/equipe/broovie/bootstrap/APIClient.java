@@ -1,8 +1,20 @@
 package com.broovie.equipe.broovie.bootstrap;
 
+import java.text.SimpleDateFormat;
+
+import com.broovie.equipe.broovie.models.DateTime;
 import com.broovie.equipe.broovie.util.UtilAutenticacao;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
@@ -17,7 +29,7 @@ public class APIClient {
 
     private static Retrofit retrofit = null;
 
-    public static final String ENDPOINT = "http://192.168.25.218:8080";
+    public static final String ENDPOINT = "http://192.168.137.1:8080";
 
     public static Retrofit getClient() {
 
@@ -37,11 +49,15 @@ public class APIClient {
                 })
                 .build();
 
+
         retrofit = new Retrofit.Builder()
                 .baseUrl(ENDPOINT)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder()
+                        .setDateFormat(DateFormat.LONG)
+                        .create()))
                 .client(client)
                 .build();
+
 
         return retrofit;
     }

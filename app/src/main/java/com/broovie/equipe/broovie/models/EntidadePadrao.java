@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public abstract class EntidadePadrao {
     private Long code;
-    private Date dataCadastro;
+    /*private Date dataCadastro;
     private Date dataAtualizado = null;
-    private Date dataExcluido = null;
+    private Date dataExcluido = null;*/
 }
