@@ -64,7 +64,6 @@ public class PerfilActivity extends Fragment {
             }else {
                 btnAlterar.setVisibility(View.GONE);
                 btnAdicionar.setVisibility(View.VISIBLE);
-
             }
             tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
             viewPager = (ViewPager) view.findViewById(R.id.viewPager);

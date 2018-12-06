@@ -66,14 +66,17 @@ public class FilmeActivity extends Fragment {
         alterarAvaliacao(this.filme, Avaliacao.Nota.values()[rating]);
     }
 
-    public void setDadosFilme(Filme filme) {
+    public void setDadosFilme(final Filme filme) {
+        txtNomeFilme.setText(filme.getNome());
+        txtSinopse.setText(filme.getSinopse());
+
         apiAvaliacao.avaliacao(UtilAutenticacao.USUARIO.getCode(), filme.getCode()).enqueue(new Callback<Avaliacao>() {
             @Override
             public void onResponse(Call<Avaliacao> call, Response<Avaliacao> response) {
                 Avaliacao avaliacao = response.body();
-                txtNomeFilme.setText(avaliacao.getFilme().getNome());
-                txtSinopse.setText(avaliacao.getFilme().getSinopse());
-                srb.setRating(avaliacao.getNota().ordinal());
+                if (avaliacao != null) {
+                    srb.setRating(avaliacao.getNota().ordinal());
+                }
             }
 
             @Override
@@ -96,12 +99,6 @@ public class FilmeActivity extends Fragment {
                 if (avaliacao != null && avaliacao.getNota() != nota) {
                     avaliacao.setNota(nota);
                     alterar(avaliacao);
-                } else {
-                    avaliacao = new Avaliacao();
-                    avaliacao.setFilme(filme);
-                    avaliacao.setUsuario(UtilAutenticacao.USUARIO);
-                    avaliacao.setNota(Avaliacao.Nota.values()[nota.ordinal()]);
-                    avaliar(avaliacao);
                 }
             }
 

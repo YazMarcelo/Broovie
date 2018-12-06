@@ -2,6 +2,9 @@ package com.broovie.equipe.broovie.activities.Usuario;
 
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +14,7 @@ import android.widget.Toast;
 
 import com.broovie.equipe.broovie.R;
 import com.broovie.equipe.broovie.activities.LayoutActivity;
+import com.broovie.equipe.broovie.activities.Perfil.PerfilActivity;
 import com.broovie.equipe.broovie.bootstrap.APIClient;
 import com.broovie.equipe.broovie.models.Usuario;
 import com.broovie.equipe.broovie.resources.UsuarioResource;
@@ -33,13 +37,14 @@ public class AlterarUsuarioActivity extends AppCompatActivity {
     Button btnAlterar;
     Usuario usuario;
     UsuarioResource apiUserResource;
+    LayoutActivity layoutActivity;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alterar_usuario);
-
+        layoutActivity = new LayoutActivity();
         apiUserResource = APIClient.getClient().create(UsuarioResource.class);
 
         txtNome = (EditText) findViewById(R.id.alt_txtNome);
@@ -76,21 +81,21 @@ public class AlterarUsuarioActivity extends AppCompatActivity {
 
     public void alterarUsuario(View view) {
 
-        final Usuario user = Usuario.builder()
-                .nome(txtNome.getText().toString())
-                .email(txtEmail.getText().toString())
-                .pais(txtPais.getText().toString())
-                .pais(txtPais.getText().toString())
-                .nomeUsuario(txtNomeUsuario.getText().toString()).build();
+        Usuario usuario = UtilAutenticacao.USUARIO;
+        usuario.setNome(txtNome.getText().toString());
+        usuario.setEmail(txtEmail.getText().toString());
+        usuario.setPais(txtPais.getText().toString());
+        //usuario.setDataNascimento(new Date());
 
-        Call<Usuario> put = apiUserResource.put(user);
+        Call<Usuario> put = apiUserResource.put(usuario);
 
-        apiUserResource.put(user).enqueue(new Callback<Usuario>() {
+        apiUserResource.put(usuario).enqueue(new Callback<Usuario>() {
             @Override
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-                Usuario u = new Usuario();
-                u = response.body();
-
+                if (response.body() != null)
+                    UtilAutenticacao.USUARIO = response.body();
+                Intent it = new Intent(AlterarUsuarioActivity.this, LayoutActivity.class);
+                startActivity(it);
             }
 
             @Override

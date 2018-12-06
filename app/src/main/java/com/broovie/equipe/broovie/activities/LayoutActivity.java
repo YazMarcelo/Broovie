@@ -70,7 +70,7 @@ public class LayoutActivity extends AppCompatActivity {
         showFragment(telaPrincipalActivity, "Tela Principal");
     }
 
-    private final void showFragment(Fragment fragmento, String nomePagina) {
+    public final void showFragment(Fragment fragmento, String nomePagina) {
         FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frag_base, fragmento, nomePagina).commit();
     }
